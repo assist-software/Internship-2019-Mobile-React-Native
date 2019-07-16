@@ -10,7 +10,7 @@ export default class DetailsScreen extends React.Component {
                 <View>
                 <Image style={styles.img} source={images.test}/>
                 <View style={styles.contentView}>
-  
+                        
                 </View>
                 </View>
             </ScrollView>

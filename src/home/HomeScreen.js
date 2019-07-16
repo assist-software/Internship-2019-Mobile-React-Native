@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, Tou
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import WatchlistScreen from '../watchlist/WatchlistScreen';
 import ExploreScreen from '../explore/ExploreScreen';
-import images from '../utils/images';
+import images from '../utils/imagesHome';
 import Rectangle from '../rectangle/rectangle';
 import Buttons1_5 from '../comingNextButtons/buttons0_4';
 import MoviesList1 from '../moviesList/moviesList1';
@@ -43,7 +43,7 @@ export default class HomeScreen extends Component {
               </Text>
             </View>
             <View style={{ flex: 3 }}>
-              <TouchableOpacity onPress={()=>this.props.navigate.navigation("Details")} >
+              <TouchableOpacity >
                 <Text style={styles.seeAllTextStyle}>
                   See All
                 </Text>

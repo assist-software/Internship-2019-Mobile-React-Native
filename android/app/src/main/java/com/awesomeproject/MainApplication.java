@@ -6,6 +6,8 @@ import com.facebook.react.ReactApplication;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.brentvatne.react.ReactVideoPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -29,6 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactNativeYouTube(),
             new RNCardViewPackage(),
             new ReactVideoPackage()
+            new VectorIconsPackage(),
+            new RNCardViewPackage()
       );
     }
 

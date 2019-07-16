@@ -40,7 +40,7 @@ export default class DetailsScreen extends React.Component {
         for (let i = 0; i < 6; i++) {
             const image = images['img_' + (i + 1)]
             pics.push(
-                <TouchableOpacity style={styles.item_picture} key={pics} 
+                <TouchableOpacity style={styles.item_picture} key={pics}
                     onPress={() => { this.props.navigation.navigate('FullImage', {image}) }}>
                     <Image
                         source={image}

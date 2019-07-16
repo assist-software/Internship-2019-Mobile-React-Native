@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "core-js": "^3.1.4",
     "moment": "^2.22.2",
     "react": "^16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
@@ -14,6 +15,7 @@
     "react-native-toolbar": "^1.0.7",
     "react-native-video": "^4.4.4",
     "react-native-youtube": "^1.1.0",
+    "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {
@@ -24,5 +26,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }

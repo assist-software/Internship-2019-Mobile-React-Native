@@ -12,6 +12,8 @@
     "react-native": "0.57.4",
     "react-native-cardview": "^2.0.2",
     "react-native-toolbar": "^1.0.7",
+    "react-native-video": "^4.4.4",
+    "react-native-youtube": "^1.1.0",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {

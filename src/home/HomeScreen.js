@@ -10,7 +10,12 @@ export default class HomeScreen extends React.Component {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Button
           title="Go to Details"
-          onPress={() => { this.props.navigation.navigate('Details') }} />
+          onPress={() => {
+            this.props.navigation.navigate('Details', {
+              // name: "amariei",
+              // lname: 'sabin'
+            })
+          }} />
       </View>
     );
   }

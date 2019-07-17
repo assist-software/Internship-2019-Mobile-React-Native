@@ -4,11 +4,12 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import WatchlistScreen from '../watchlist/WatchlistScreen';
 import ExploreScreen from '../explore/ExploreScreen';
 import images from '../utils/imagesHome';
-import Rectangle from '../rectangle/rectangle';
-import Buttons1_5 from '../comingNextButtons/buttons0_4';
-import MoviesList1 from '../moviesList/moviesList1';
-import Buttons5_9 from '../recentAddedButtons/buttons4_7';
-import MoviesList2 from '../moviesList/moviesList2';
+
+import Buttons1_5 from '../home/comingNextButtons/buttons0_4';
+import Rectangle from '../home/rectangle/rectangle';
+import MoviesList1 from '../home/moviesList/moviesList1';
+import Buttons5_9 from '../home/recentAddedButtons/buttons4_7';
+import MoviesList2 from '../home/moviesList/moviesList2';
 
 export default class HomeScreen extends Component {
 

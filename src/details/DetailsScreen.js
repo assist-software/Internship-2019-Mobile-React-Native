@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import images from '../utils/images';
+import images from '../utils/imagesDetails';
 
 export default class DetailsScreen extends React.Component {
     // Movie description

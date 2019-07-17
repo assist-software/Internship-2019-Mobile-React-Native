@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet} from 'react-native';
-import images from '../utils/imagesHome';
+import images from '../../utils/imagesHome';
 export default class rectangle extends Component {
   constructor(props) {
     super(props);

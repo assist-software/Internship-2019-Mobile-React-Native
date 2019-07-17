@@ -5,6 +5,9 @@ import ExploreScreen from './explore/ExploreScreen';
 import React from 'react';
 import DetailsScreen from "./details/DetailsScreen";
 import Icon from 'react-native-vector-icons/Ionicons';
+import FullImageScreen from "./details/FullImageScreen";
+import VideosScreen from "./details/VideosScreen";
+import LoginScreen from "./Login/LoginScreen";
 
 const TabNavigator = createBottomTabNavigator({
     Home:
@@ -53,7 +56,10 @@ const TabNavigator = createBottomTabNavigator({
 
 const homeStackNavigator = createStackNavigator({
     HomePage: TabNavigator,
-    Details: DetailsScreen
+    Details: DetailsScreen,
+    FullImage: FullImageScreen,
+    Trailers: VideosScreen,
+    Login: LoginScreen
 
 
 },
@@ -65,5 +71,4 @@ const homeStackNavigator = createStackNavigator({
         }
     })
 
-
-export default homeStackNavigator
+export default homeStackNavigator;

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.facebook.react.ReactNativeHost;

@@ -27,10 +27,9 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+            new MainReactPackage(),
             new ReactNativeYouTube(),
-            new RNCardViewPackage(),
-            new ReactVideoPackage()
+            new ReactVideoPackage(),
             new VectorIconsPackage(),
             new RNCardViewPackage()
       );

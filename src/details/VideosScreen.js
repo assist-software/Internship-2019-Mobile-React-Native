@@ -1,19 +1,27 @@
 import React from 'react';
 import { Text, Button, StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
+import YouTube from 'react-native-youtube';
 
 export default class VideosScreen extends React.Component {
   render() {
     const { width } = Dimensions.get('window');
 
     return (
-      <View style={styles.container_video}>
-        <Video source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-          style={styles.backgroundVideo} controls={true} />
-          <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Explore') }}>
-          <Image style={styles.backImg} source={images.icon_back} />
-          </TouchableOpacity>
-      </View>
+      <YouTube
+        videoId="Of52MNnXoxU" // your tube video
+        play={true}            
+        fullscreen={true}       
+        loop={true}    
+        apiKey="AIzaSyDjn3zyTFnTUH_tqIalKwYHsjLzkf0Zwac" // don't change it       
+
+        onReady={e => this.setState({ isReady: true })}
+        onChangeState={e => this.setState({ status: e.state })}
+        onChangeQuality={e => this.setState({ quality: e.quality })}
+        onError={e => this.setState({ error: e.error })}
+
+        style={{ alignSelf: 'stretch', height: 300 }}
+      />
     );
   }
 }

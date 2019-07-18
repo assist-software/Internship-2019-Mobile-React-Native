@@ -1,39 +1,50 @@
 import React from 'react';
-import { Text, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, FlatList, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import images from '../utils/imagesDetails';
+//import getMoviesFromSever from '../networking/network';
 
 export default class DetailsScreen extends React.Component {
     // Movie description
-    data = {
-        description: "Josephine Chesterfield is a glamorous, seductive " +
-            " British woman who has a penchant for defrauding gullible men out of their money." +
-            " \n\n Into her well-ordered, meticulous world comes Penny Rust, a cunning and fun-loving" +
-            " Australian woman who lives to swindle unsuspecting marks. Despite their different " +
-            " methods, the two grifters soon join forces for the ultimate score -- a young and naive " +
-            " tech billionaire in the South of France. \n\n\n\ ",
+    // data = {
+    //     title: " The hustle ",
+    //     description: "Josephine Chesterfield is a glamorous, seductive " +
+    //         " British woman who has a penchant for defrauding gullible men out of their money." +
+    //         " \n\n Into her well-ordered, meticulous world comes Penny Rust, a cunning and fun-loving" +
+    //         " Australian woman who lives to swindle unsuspecting marks. Despite their different " +
+    //         " methods, the two grifters soon join forces for the ultimate score -- a young and naive " +
+    //         " tech billionaire in the South of France. \n\n\n\ ",
+    //     director: " Chris Addison ",
+    //     writers: " Stanley Shapiro (screenplay by), Paul Henning (screenplay by) ",
+    //     name: " Anne Hathaway, Rebel Wilson \n\n\ "
+    // }
 
-        personalfilm: " Director: ",
-        director: " Chris Addison ",
-
-        personalfilm2: " Writers: ",
-        writers: " Stanley Shapiro (screenplay by), Paul Henning (screenplay by) ",
-
-        actors: " Stars ",
-        name: " Anne Hathaway, Rebel Wilson \n\n\ "
+    constructor(props) {
+        super(props);
+        this.state = { 
+            isLoading: true,
+            dataSource: null,
+            movie: {}
+        }
     }
 
-    // constructor(props) {
-    //   super(props);
-    //   this.state = {
-    //     dataSource: [images],
-    //   };
-    // }
+    componentDidMount() {
+        return fetch('http://www.json-generator.com/api/json/get/bUHpXqWbAO?indent=2')
+            .then((response) => response.json())
+            .then((responseJson) => {
 
-    // componentDidMount() {
-    //     const name = this.props.navigation.getParam('name')
-    //     const lname = this.props.navigation.getParam('lname')
-    //    console.warn(lname)
-    // }
+                this.setState({
+                    isLoading: false,
+                    dataSource: responseJson.movie,
+                    movie: responseJson
+                }, function () {
+
+                });
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     renderPictures() {
         let pics = [];
@@ -41,7 +52,7 @@ export default class DetailsScreen extends React.Component {
             const image = images['img_' + (i + 1)]
             pics.push(
                 <TouchableOpacity style={styles.item_picture} key={pics}
-                    onPress={() => { this.props.navigation.navigate('FullImage', {image}) }}>
+                    onPress={() => { this.props.navigation.navigate('FullImage', { image }) }}>
                     <Image
                         source={image}
                         style={styles.img} />
@@ -52,22 +63,23 @@ export default class DetailsScreen extends React.Component {
 
     render() {
         let pics = this.renderPictures()
+        const {movie} = this.state;
         return (
             <View style={{ backgroundColor: 'black', flex: 1 }}>
                 <ScrollView>
                     <View>
                         <Image style={styles.img} source={images.background_img} />
                         <View style={styles.contentView}>
-                            <Text style={styles.title}>The Hustle</Text>
+                            <Text style={styles.title}>{movie.title}</Text> 
                             <Image style={styles.img2} source={images.imdb} />
-                            <Text style={styles.date}>20.07.2020</Text>
-                            <Text style={styles.description}>{this.data.description}</Text>
-                            <Text style={styles.date}>{this.data.personalfilm}</Text>
-                            <Text style={styles.directorname}>{this.data.director}</Text>
-                            <Text style={styles.date}>{this.data.personalfilm2}</Text>
-                            <Text style={styles.writersname}>{this.data.writers}</Text>
-                            <Text style={styles.date}>{this.data.actors}</Text>
-                            <Text style={styles.actorsname}>{this.data.name}</Text>
+                            <Text style={styles.date}>{movie.date}</Text>
+                            <Text style={styles.description}>{movie.description}</Text>
+                            <Text style={styles.personal}>Director:</Text>
+                            <Text style={styles.directorname}>{movie.director}</Text>
+                            <Text style={styles.personal}>Writers:</Text>
+                            <Text style={styles.writersname}>{movie.writers}</Text>
+                            <Text style={styles.personal}>Actors:</Text>
+                            <Text style={styles.actorsname}>{movie.name}</Text>
                             <View style={styles.pictures}>
                                 {pics}
                             </View>
@@ -75,18 +87,22 @@ export default class DetailsScreen extends React.Component {
                         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
                             <Image style={styles.backImg} source={images.icon_back} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('Login') }}>
+                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('MyProfile') }}>
                             <Image style={styles.addImg} source={images.icon_add} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailers') } }>
+
+                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details') } }>
+
                             <Image style={styles.playImg} source={images.play} />
                         </TouchableOpacity>
+
                     </View>
                 </ScrollView>
             </View>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     playImg: {
@@ -138,6 +154,13 @@ const styles = StyleSheet.create({
         height: 41,
         bottom: -24
     },
+    personal:{
+        fontSize: 14,
+        fontStyle: 'normal',
+        color: '#979797',
+        left: 16,
+        bottom: -15
+    },
     date: {
         fontSize: 14,
         fontStyle: 'normal',
@@ -159,7 +182,7 @@ const styles = StyleSheet.create({
         left: 140,
         bottom: 8,
         textAlign: 'auto',
-        lineHeight: 27
+        lineHeight: 27,
     },
     writersname: {
         fontSize: 15,

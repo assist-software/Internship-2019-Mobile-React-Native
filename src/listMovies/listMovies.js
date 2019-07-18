@@ -82,11 +82,11 @@ export default class WatchlistScreen extends React.Component {
 
   render() {
     
-    
-
+    let title=this.props.navigation.getParam('title');
+    //console.warn(title);
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Watchlist</Text>
+        <Text style={styles.title}>{title}</Text>
         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
           <Image style={styles.backIMG} source={menuImages.back} />
         </TouchableOpacity>

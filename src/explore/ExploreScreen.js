@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput ,ScrollView, View, FlatList, StyleSheet, TouchableOpacity, Image,AppRegistry,ActivityIndicator} from 'react-native';
+import { Text, ScrollView, View, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import images from '../utils/menuButtons';
 
 
@@ -76,7 +76,7 @@ export default class ExploreScreen extends React.Component {
             showActivity:false
         };
         this.handleChangeText = this.handleChangeText.bind(this)
-    }
+  }
 
     handleChangeText(newText){
         this.setState({
@@ -84,13 +84,11 @@ export default class ExploreScreen extends React.Component {
         })}
         render() {
             return (
-
                 <ScrollView stickyHeaderIndices={[0]}
                             showsVerticalScrollIndicator={false}
                             style={styles.container}>
                     <View  style={styles.header}>
                         <Text style={styles.title}>Explore</Text>
-
                         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
                             <Image style={styles.backIMG} source={images.back} />
                         </TouchableOpacity>
@@ -179,10 +177,10 @@ export default class ExploreScreen extends React.Component {
             color: 'white',
             fontFamily: 'SF Pro Display',
             marginBottom:-19,
-
         },
         fList: {
             marginHorizontal: 4,
             marginVertical: -15,
         },
     });
+

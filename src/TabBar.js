@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FullImageScreen from "./details/FullImageScreen";
 import VideosScreen from "./details/VideosScreen";
 import LoginScreen from "./Login/LoginScreen";
+import GenreExploreList from "./GenreExplore/GenreExploreList";
 
 const TabNavigator = createBottomTabNavigator({
     Home:
@@ -59,7 +60,8 @@ const homeStackNavigator = createStackNavigator({
     Details: DetailsScreen,
     FullImage: FullImageScreen,
     Trailers: VideosScreen,
-    Login: LoginScreen
+    Login: LoginScreen,
+    navGenreExploreList : GenreExploreList,
 
 
 },

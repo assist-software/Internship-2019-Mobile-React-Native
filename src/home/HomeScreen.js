@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import WatchlistScreen from '../watchlist/WatchlistScreen';
-import ExploreScreen from '../explore/ExploreScreen';
 import images from '../utils/imagesHome';
 
 import Buttons1_5 from '../home/comingNextButtons/buttons0_4';

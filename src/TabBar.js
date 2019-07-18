@@ -7,7 +7,7 @@ import DetailsScreen from "./details/DetailsScreen";
 import Icon from 'react-native-vector-icons/Ionicons';
 import FullImageScreen from "./details/FullImageScreen";
 import VideosScreen from "./details/VideosScreen";
-import LoginScreen from "./Login/LoginScreen";
+import ProfileScreen from "./details/ProfileScreen";
 
 const TabNavigator = createBottomTabNavigator({
     Home:
@@ -33,7 +33,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Explore: {
-        screen:ExploreScreen,
+        screen: ExploreScreen,
         navigationOptions:
         {
             tabBarLabel: 'Explore',
@@ -43,7 +43,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     }
 
-    },
+},
     {
         tabBarOptions:
         {
@@ -59,11 +59,8 @@ const homeStackNavigator = createStackNavigator({
     Details: DetailsScreen,
     FullImage: FullImageScreen,
     Trailers: VideosScreen,
-    Login: LoginScreen
-
-
-},
-    {
+    MyProfile: ProfileScreen,
+}, {
         initialRouteName: 'HomePage',
         headerMode: 'none',
         navigationOptions: {

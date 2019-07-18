@@ -9,7 +9,7 @@ export default class VideosScreen extends React.Component {
 
     return (
       <YouTube
-        videoId="Of52MNnXoxU" // your tube video
+        videoId="Of52MNnXoxU" // youtube video key
         play={true}            
         fullscreen={true}       
         loop={true}    
@@ -25,29 +25,3 @@ export default class VideosScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container_video: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%'
-  },
-  backBtn: {
-    position: 'absolute',
-    top: 30,
-    left: 16
-  },
-  backImg: {
-    width: 25,
-    height: 25
-  }
-});

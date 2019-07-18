@@ -9,51 +9,63 @@ export default class moviesList2 extends Component {
     }
     
     render() {
+        let list=[ 
+            {
+                name:'Godzilla',
+                date:'19.09.2019',
+                image:images.movie_logo1,
+            },
+            {
+                name:'The Hustle',
+                date:'10.05.2020',
+                image:images.movie_logo2,
+            }
+        ]
         return (
             <View style={styles.moviesListView2}>
                 <ScrollView horizontal={true}>
                     <View>
                         <View style={{ flex: 1, marginRight: 12 }}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")} >
-                                <Image source={images.movie_logo1} style={styles.movieStyle} />
+                                <Image source={list[0].image}  style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <Text style={styles.movieDescription1Style}>Godzilla</Text>
-                            <Text style={styles.movieDescription2Style}>19.09.2019</Text>
+                            <Text style={styles.movieDescription1Style}>{list[0].name}</Text>
+                            <Text style={styles.movieDescription2Style}>{list[0].date}</Text>
                         </View>
                     </View>
                     <View>
                         <View style={{ flex: 1, marginRight: 12 }}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                <Image source={images.movie_logo2} style={styles.movieStyle} />
+                                <Image source={list[1].image} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <Text style={styles.movieDescription1Style}>The Hustle</Text>
-                            <Text style={styles.movieDescription2Style}>10.05.2020</Text>
+                            <Text style={styles.movieDescription1Style}>{list[1].name}</Text>
+                            <Text style={styles.movieDescription2Style}>{list[1].date}</Text>
                         </View>
                     </View>
                     <View>
                         <View style={{ flex: 1, marginRight: 12 }}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                <Image source={images.movie_logo1} style={styles.movieStyle} />
+                                <Image source={list[0].image} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <Text style={styles.movieDescription1Style}>Godzilla</Text>
-                            <Text style={styles.movieDescription2Style}>19.09.2019</Text>
+                            <Text style={styles.movieDescription1Style}>{list[0].name}</Text>
+                            <Text style={styles.movieDescription2Style}>{list[0].date}</Text>
                         </View>
                     </View>
                     <View>
                         <View style={{ flex: 1, marginRight: 12 }}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                <Image source={images.movie_logo2} style={styles.movieStyle} />
+                                <Image source={list[1].image} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <Text style={styles.movieDescription1Style}>The Hustle</Text>
-                            <Text style={styles.movieDescription2Style}>10.05.2020</Text>
+                            <Text style={styles.movieDescription1Style}>{list[1].name}</Text>
+                            <Text style={styles.movieDescription2Style}>{list[1].date}</Text>
                         </View>
                     </View>
                 </ScrollView>

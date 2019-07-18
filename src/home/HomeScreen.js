@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
 import images from '../utils/imagesHome';
-
 import Buttons1_5 from '../home/comingNextButtons/buttons0_4';
 import Rectangle from '../home/rectangle/rectangle';
 import MoviesList1 from '../home/moviesList/moviesList1';
@@ -13,63 +12,67 @@ export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {}
+
   }
+
   render() {
 
     return (
-
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.logoStyle}>
-            <Image source={images.moovie} style={styles.imageLogoStyle} />
-          </View>
-          <View style={styles.watchAnywhereStyleView}>
-            <Text style={styles.watchAnywhereStyleText}>
-              Watch Anywhere.
-              </Text>
-          </View>
-          <View style={styles.phraseStyleView}>
-            <Text style={styles.phraseStyleText}>
-              Keep up to date about what movies will be realesed in the next couple of months.
-                </Text>
-          </View>
-          <Rectangle />
-          <View style={styles.comingNextStyleView}>
-            <View style={{ flex: 10 }}>
-              <Text style={styles.comingNextTextStyle}>
-                Coming Next
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          <View style={styles.container}>
+            <View style={styles.logoStyle}>
+              <Image source={images.moovie} style={styles.imageLogoStyle} />
+            </View>
+            <View style={styles.watchAnywhereStyleView}>
+              <Text style={styles.watchAnywhereStyleText}>
+                Watch Anywhere.
               </Text>
             </View>
-            <View style={{ flex: 3 }}>
-              <TouchableOpacity >
-                <Text style={styles.seeAllTextStyle}>
-                  See All
+            <View style={styles.phraseStyleView}>
+              <Text style={styles.phraseStyleText}>
+                Keep up to date about what movies will be realesed in the next couple of months.
                 </Text>
-              </TouchableOpacity>
             </View>
-            <View style={{ flex: 1 }}></View>
-          </View>
-          <Buttons1_5 />
-          <MoviesList1 navigation={this.props.navigation}/>
-          <View style={styles.recentAddedViewStyle}>
-            <View style={{ flex: 10 }}>
-              <Text style={styles.recentAddedTextStyle}>
-                Recent Added
+            <Rectangle navigation={this.props.navigation} />
+            <View style={styles.comingNextStyleView}>
+              <View style={{ flex: 10 }}>
+                <Text style={styles.comingNextTextStyle}>
+                  Coming Next
               </Text>
-            </View>
-            <View style={{ flex: 3 }}>
-              <TouchableOpacity >
-                <Text style={styles.seeAllTextStyle}>
-                  See All
+              </View>
+              <View style={{ flex: 3 }}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate("ListMovies", {title:'Coming Next'})}>
+                  <Text style={styles.seeAllTextStyle}>
+                    See All
                 </Text>
-              </TouchableOpacity>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flex: 1 }}></View>
             </View>
-            <View style={{ flex: 1 }}></View>
+            <Buttons1_5 />
+           
+            <MoviesList1 navigation={this.props.navigation} />
+            <View style={styles.recentAddedViewStyle}>
+              <View style={{ flex: 10 }}>
+                <Text style={styles.recentAddedTextStyle}>
+                  Recent Added
+              </Text>
+              </View>
+              <View style={{ flex: 3 }}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate("ListMovies", {title:'Recent Added'})}>
+                  <Text style={styles.seeAllTextStyle}>
+                    See All
+                </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flex: 1 }}></View>
+            </View>
+            <Buttons5_9 />
+            <MoviesList2 navigation={this.props.navigation} />
           </View>
-          <Buttons5_9/>
-          <MoviesList2 navigation={this.props.navigation}/>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
 
 
 
@@ -88,14 +91,15 @@ const styles = StyleSheet.create(
 
     logoStyle:
     {
-      height: 105,
+      height:'auto',
+      width:'auto',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginTop:40,
     },
     imageLogoStyle:
     {
-      width: '55%',
-      height: '47%'
+      
     },
     watchAnywhereStyleView:
     {

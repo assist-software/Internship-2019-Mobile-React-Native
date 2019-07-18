@@ -90,7 +90,9 @@ export default class DetailsScreen extends React.Component {
                         <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('MyProfile') }}>
                             <Image style={styles.addImg} source={images.icon_add} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailers') }}>
+
+                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details') } }>
+
                             <Image style={styles.playImg} source={images.play} />
                         </TouchableOpacity>
 

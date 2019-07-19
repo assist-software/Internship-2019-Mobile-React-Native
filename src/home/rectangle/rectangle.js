@@ -16,7 +16,6 @@ export default class rectangle extends Component {
   render() {
     
     return (
-      <View style={styles.rectangleViewStyle}>
         <ImageBackground source={this.rectangle.image} style={styles.rectangleImageBackgroundStyle}>
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 3 }}>
@@ -38,32 +37,19 @@ export default class rectangle extends Component {
             </View>
           </View>
         </ImageBackground>
-      </View>
     );
   }
 }
 
 const styles = StyleSheet.create(
   {
-    rectangleViewStyle:
-    {
-      height: 202,
-      width: 363,
-      marginLeft: 16,
-      marginRight: 16,
-      marginTop: 53,
-      marginBottom: 65,
-
-    },
     rectangleImageBackgroundStyle:
     {
+      marginTop:53,
+      marginBottom:66,
       alignContent: 'center',
       justifyContent: 'center',
-      width: '100%',
-      height: '100%',
       borderRadius: 20,
-      marginLeft: 7
-
     },
     movieTextStyle:
     {

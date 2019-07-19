@@ -1,132 +1,98 @@
 import React from 'react';
-import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image,TextInput,ActivityIndicator} from 'react-native';
-import images from '../utils/imagesWL';
+import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image,TextInput} from 'react-native';
 import menuImages from '../utils/menuButtons';
-
-
+import {Keyboard} from 'react-native'
 
 export default class GenreExploreList extends React.Component {
-
-    dataArray = [
-        {
-            id: 1,
-            title: "Exemplu titlu",
-            image: images.test1,
-            date: "15/07/2019"
-        },
-        {
-            id: 2,
-            title: "Exemplu titlu",
-            image: images.test2,
-            date: "15/07/2019"
-        },
-        {
-            id: 3,
-            title: "Exemplu titlu",
-            image: images.test3,
-            date: "15/07/2019"
-        },
-        {
-            id: 4,
-            title: "Exemplu titlu",
-            image: images.test4,
-            date: "15/07/2019"
-        },
-        {
-            id: 5,
-            title: "Exemplu titlu",
-            image: images.test5,
-            date: "15/07/2019"
-        },
-        {
-            id: 6,
-            title: "Exemplu titlu",
-            image: images.test6,
-            date: "15/07/2019"
-        },
-        {
-            id: 7,
-            title: "Exemplu titlu",
-            image: images.test1,
-            date: "15/07/2019"
-        },
-        {
-            id: 8,
-            title: "Exemplu titlu",
-            image: images.test3,
-            date: "15/07/2019"
-        },
-        {
-            id: 9,
-            title: "Exemplu titlu",
-            image: images.test2,
-            date: "15/07/2019"
-        },
-        {
-            id: 10,
-            title: "Exemplu titlu",
-            image: images.test5,
-            date: "15/07/2019"
-        },
-        {
-            id: 11,
-            title: "Exemplu titlu",
-            image: images.test6,
-            date: "15/07/2019"
-        },
-        {
-            id: 12,
-            title: "Exemplu titlu",
-            image: images.test4,
-            date: "15/07/2019"
-        }
-    ];
-
     constructor(props) {
         super(props);
         this.state = {
-            search: "",
+            data: [],
+            error: null,
+            text: "",
+            viewSource: [],
+            loading: false
         };
     }
-    updateSearch(event){
-        this.setState({search:event.target.value.substr(0,20)})
+
+    componentDidMount() {
+        return fetch('http://www.json-generator.com/api/json/get/bZTksXwyDC?indent=2')
+            .then((response) => response.json())
+            .then((responseJson) => {
+
+                this.setState({
+                        data :responseJson,
+                        viewSource: responseJson,
+                    },function() {
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
+    renderHeader = () => {
+        return (
+            <View style={styles.search}>
+
+                <TextInput style={styles.searchText}
+                           underlineColorAndroid="transparent"
+                           placeholder={'Search'}
+                           placeholderTextColor='#9C9B9B'
+                           onChangeText={text => this.searchFilterFunction(text)}
+                           selectionColor="black"
+                           underlineColorAndroid="black"
+                />
+            </View>
+        );
+    };
+
+
+
+    searchFilterFunction = text => {
+        const newData = this.state.data.filter(item => {
+            if(!text)
+            {
+                return true;
+            }
+            const itemData = `${item.title.toUpperCase()}`;
+
+            const textData = text.toUpperCase();
+
+            return itemData.indexOf(textData) !== -1;
+            return (typeof item.title === 'string') &&
+                item.title.includes(text)
+
+        });
+        this.setState({ viewSource: newData });
+    };
 
     render() {
         const title = this.props.navigation.getParam('item');
-        //let filteredMovies = this.props.movies
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>{title}</Text>
-                <View style={styles.search}>
-
-                    <TextInput style={styles.searchText}
-                               underlineColorAndroid="transparent"
-                               placeholder={'Search'}
-                               placeholderTextColor='#9C9B9B'
-
-                    />
-                </View>
-
                 <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Explore') }}>
                     <Image style={styles.backIMG} source={menuImages.back} />
                 </TouchableOpacity>
 
-                    <FlatList
-                        data={this.dataArray}
-                        numColumns={2}
-
-                        renderItem={({ item }) =>
-                            <View style={styles.fList}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item})}>
-                                    <Image style={styles.img} source={item.image}></Image>
-                                </TouchableOpacity>
-                                <Text style={styles.titluFilme}>{item.title}</Text>
-                                <Text style={styles.dataFilme}>{item.date}</Text>
-                            </View>
-                        }keyExtractor={(item, index) => index.toString()}
-                    />
+                <FlatList
+                    onScroll={() => {Keyboard.dismiss()}}
+                    data={this.state.viewSource}
+                    numColumns={2}
+                    renderItem={({ item }) => (
+                        <View style={styles.fList}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item})}>
+                                <Image style={styles.img} source={{uri : item.image}}></Image>
+                            </TouchableOpacity>
+                            <Text style={styles.titluFilme}>{item.title}</Text>
+                            <Text style={styles.dataFilme}>{item.date}</Text>
+                        </View>
+                    )}
+                    keyExtractor={item => item.title}
+                    ItemSeparatorComponent={this.renderSeparator}
+                    ListHeaderComponent={this.renderHeader}
+                />
             </View>
         );
     }
@@ -154,6 +120,7 @@ const styles = StyleSheet.create({
     fList: {
         marginHorizontal: 4,
         marginVertical: 16,
+        marginBottom:30
     },
     titluFilme:{
         left:18,
@@ -173,7 +140,7 @@ const styles = StyleSheet.create({
     },
     backBtn: {
         left: 14,
-        top: -102,
+        top: -23,
         width:22,
         height:22,
     },
@@ -184,7 +151,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         top:38,
         alignSelf: 'center',
-        marginBottom:19
+        marginBottom:35
     },
     header:{
         backgroundColor:'black',
@@ -203,7 +170,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         top: 50,
-        marginBottom:39,
+        marginBottom:50,
         borderTopWidth: 1,
         borderBottomWidth: 1,
         width:'85%',

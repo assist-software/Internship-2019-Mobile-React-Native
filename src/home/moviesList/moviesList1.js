@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import images from '../../utils/imagesHome';
+import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/networkHome';
+
 export default class moviesList1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true, 
-           dataSource: null,
+            isLoading: true,
+            dataSource: null,
         };
     }
-    componentDidMount() {
-        return fetch('https://facebook.github.io/react-native/movies.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.movies,
-                })
-               
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+    async componentDidMount() {
+        let movie = await getDataFromAPI(moviesAPIUrl);
+        this.setState({
+            isLoading: false,
+            dataSource: movie.movies,
+        })
     }
     render() {
         let list=[ 
@@ -45,53 +40,26 @@ export default class moviesList1 extends Component {
             )
         }
         else {
+            let movies=this.state.dataSource.map((val,key)=>
+            {
+                    return (
+                        <View key={key}>
+                            <View key={key} style={{ marginRight: 12 }}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
+                                    <Image source={list[0].image} style={styles.movieStyle} />
+                                </TouchableOpacity>
+                            </View>
+                            <View key={key} style={styles.movieDescriptionView}>
+                                <Text style={styles.movieDescription1Style}>{val.title}</Text>
+                                <Text style={styles.movieDescription2Style}>{val.releaseYear}</Text>
+                            </View>
+                        </View>
+                    )
+            })
             return (
                 <View style={styles.moviesListView1}>
                     <ScrollView horizontal={true}>
-                        <View>
-                            <View style={{ marginRight: 12 }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                    <Image source={list[0].image} style={styles.movieStyle} />
-                                </TouchableOpacity>
-                            </View>
-                            <View>
-                                <Text style={styles.movieDescription1Style}>{list[0].name}</Text>
-                                <Text style={styles.movieDescription2Style}>{list[0].date}</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <View style={{ marginRight: 12 }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                    <Image source={list[1].image} style={styles.movieStyle} />
-                                </TouchableOpacity>
-                            </View>
-                            <View>
-                                <Text style={styles.movieDescription1Style}>{list[1].name}</Text>
-                                <Text style={styles.movieDescription2Style}>{list[1].date}</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <View style={{ marginRight: 12 }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                    <Image source={list[0].image} style={styles.movieStyle} />
-                                </TouchableOpacity>
-                            </View>
-                            <View>
-                                <Text style={styles.movieDescription1Style}>{list[0].name}</Text>
-                                <Text style={styles.movieDescription2Style}>{list[0].date}</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <View style={{ marginRight: 12 }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                    <Image source={list[1].image} style={styles.movieStyle} />
-                                </TouchableOpacity>
-                            </View>
-                            <View>
-                                <Text style={styles.movieDescription1Style}>{list[1].name}</Text>
-                                <Text style={styles.movieDescription2Style}>{list[1].date}</Text>
-                            </View>
-                        </View>
+                        {movies}
                     </ScrollView>
                 </View>
             );
@@ -129,5 +97,9 @@ const styles = StyleSheet.create(
             marginRight: 16,
             width: '100%'
         },
+        movieDescriptionView:
+        {
+            width:100,
+        }
     }
 )

@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         right: 20
+
     },
     addImg: {
         width: 25,

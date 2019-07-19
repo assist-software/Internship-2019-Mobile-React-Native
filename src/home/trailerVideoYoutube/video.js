@@ -2,9 +2,13 @@ import React from 'react';
 import YouTube from 'react-native-youtube';
 import { View, Text, StyleSheet, Image} from 'react-native';
 import images from '../../utils/imagesHome'
+import {Dimensions} from 'react-native'
+
 export default class VideosScreen extends React.Component {
+
   render() {
     return (
+
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <View style={{ flex: 1 }}>
           <YouTube
@@ -39,8 +43,9 @@ const styles=StyleSheet.create(
     },
     imageLogoStyle:
     {
-      width: '55%',
-      height: '47%'
+      resizeMode:'contain',
+      height:Math.round(Dimensions.get('window').height)*0.104*4.67,
+      width:Math.round(Dimensions.get('window').width)*0.185*2.63,
     },
   }
 )

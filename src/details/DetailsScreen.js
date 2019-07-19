@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     addBtn: {
         position: 'absolute',
         top: 30,
-        left: 365
+        right: 25
     },
     addImg: {
         width: 25,

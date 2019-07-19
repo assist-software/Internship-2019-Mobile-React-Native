@@ -6,7 +6,7 @@ import Rectangle from '../home/rectangle/rectangle';
 import MoviesList1 from '../home/moviesList/moviesList1';
 import Buttons5_9 from '../home/recentAddedButtons/buttons4_7';
 import MoviesList2 from '../home/moviesList/moviesList2';
-
+import {Dimensions} from 'react-native'
 export default class HomeScreen extends Component {
 
   constructor(props) {
@@ -16,7 +16,6 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
@@ -54,12 +53,12 @@ export default class HomeScreen extends Component {
            
             <MoviesList1 navigation={this.props.navigation} />
             <View style={styles.recentAddedViewStyle}>
-              <View style={{ flex: 10 }}>
+              <View style={{ flex: 15 }}>
                 <Text style={styles.recentAddedTextStyle}>
                   Recent Added
               </Text>
               </View>
-              <View style={{ flex: 3 }}>
+              <View style={{ flex: 4 }}>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate("ListMovies", {title:'Recent Added'})}>
                   <Text style={styles.seeAllTextStyle}>
                     See All
@@ -91,19 +90,21 @@ const styles = StyleSheet.create(
 
     logoStyle:
     {
-      height:'auto',
-      width:'auto',
+      flex:1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop:40,
+      marginTop:-(Math.round(Dimensions.get('window').height)/18.285*2.811),
+      marginBottom:-(Math.round(Dimensions.get('window').height)/16.695*2.811),
     },
     imageLogoStyle:
     {
+      resizeMode:'contain',
+      height:Math.round(Dimensions.get('window').height)*0.104*4.67,
+      width:Math.round(Dimensions.get('window').width)*0.185*2.63,
       
     },
     watchAnywhereStyleView:
     {
-      marginTop: 40,
       paddingLeft: 15,
     },
     watchAnywhereStyleText:

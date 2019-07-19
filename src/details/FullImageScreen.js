@@ -6,10 +6,10 @@ export default class FullImageScreen extends React.Component {
         const image = this.props.navigation.getParam('image')
         return (
             <View style={{ backgroundColor: 'black', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Details') }}>
+                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
                     <Image style={styles.backImg} source={images.icon_back} />
                 </TouchableOpacity>
-                <Image style={styles.img} source={image} />
+                <Image style={styles.img} source={{uri: image}} />
             </View>
         );
     }

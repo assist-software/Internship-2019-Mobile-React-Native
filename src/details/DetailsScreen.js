@@ -1,61 +1,48 @@
 import React from 'react';
 import { Text, FlatList, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import images from '../utils/imagesDetails';
-//import getMoviesFromSever from '../networking/network';
+import getDataFromAPI, { moviesAPIUrl } from '../networking/network';
 
 export default class DetailsScreen extends React.Component {
-    // Movie description
-    // data = {
-    //     title: " The hustle ",
-    //     description: "Josephine Chesterfield is a glamorous, seductive " +
-    //         " British woman who has a penchant for defrauding gullible men out of their money." +
-    //         " \n\n Into her well-ordered, meticulous world comes Penny Rust, a cunning and fun-loving" +
-    //         " Australian woman who lives to swindle unsuspecting marks. Despite their different " +
-    //         " methods, the two grifters soon join forces for the ultimate score -- a young and naive " +
-    //         " tech billionaire in the South of France. \n\n\n\ ",
-    //     director: " Chris Addison ",
-    //     writers: " Stanley Shapiro (screenplay by), Paul Henning (screenplay by) ",
-    //     name: " Anne Hathaway, Rebel Wilson \n\n\ "
-    // }
+
+    apiImages = [
+        {
+            url: 'https://m.media-amazon.com/images/M/MV5BMTc3MDcyNzE5N15BMl5BanBnXkFtZTgwNzE2MDE0NzM@._V1_.jpg'
+        }, {
+            url: 'https://i.ytimg.com/vi/tUt-_P_ruM4/maxresdefault.jpg'
+        },{
+            url: 'https://m.media-amazon.com/images/M/MV5BMTc3MDcyNzE5N15BMl5BanBnXkFtZTgwNzE2MDE0NzM@._V1_.jpg'
+        },
+        {
+            url: 'https://toronto.citynews.ca/wp-content/blogs.dir/sites/10/2019/05/CAJS136-59_2019_021531.jpg'
+        }, {
+            url: 'https://m.media-amazon.com/images/M/MV5BNTM1MzI4NjM1M15BMl5BanBnXkFtZTgwMzc2MDE0NzM@._V1_SX1500_CR0,0,1500,999_AL_.jpg'
+        },{
+            url: 'https://toronto.citynews.ca/wp-content/blogs.dir/sites/10/2019/05/CAJS136-59_2019_021531.jpg'
+        }
+    ]
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             isLoading: true,
-            dataSource: null,
             movie: {}
         }
     }
 
-    componentDidMount() {
-        return fetch('http://www.json-generator.com/api/json/get/bUHpXqWbAO?indent=2')
-            .then((response) => response.json())
-            .then((responseJson) => {
-
-                this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.movie,
-                    movie: responseJson
-                }, function () {
-
-                });
-
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+    async componentDidMount() {
+        let movie = await getDataFromAPI(moviesAPIUrl)
+        this.setState({movie})
     }
 
     renderPictures() {
         let pics = [];
-        for (let i = 0; i < 6; i++) {
-            const image = images['img_' + (i + 1)]
+        for (let i = 0; i < this.apiImages.length; i++) {
+            const image = this.apiImages[i].url
             pics.push(
                 <TouchableOpacity style={styles.item_picture} key={pics}
                     onPress={() => { this.props.navigation.navigate('FullImage', { image }) }}>
-                    <Image
-                        source={image}
-                        style={styles.img} />
+                    <Image source={{uri: image}} style={styles.img} />
                 </TouchableOpacity>)
         }
         return pics;
@@ -63,26 +50,24 @@ export default class DetailsScreen extends React.Component {
 
     render() {
         let pics = this.renderPictures()
-        const {movie} = this.state;
+        const { movie } = this.state;
         return (
             <View style={{ backgroundColor: 'black', flex: 1 }}>
                 <ScrollView>
                     <View>
-                        <Image style={styles.img} source={images.background_img} />
+                        <Image style={styles.imgLogo} source={{uri: movie.image_logo}} />
                         <View style={styles.contentView}>
-                            <Text style={styles.title}>{movie.title}</Text> 
+                            <Text style={styles.title}>{movie.title}</Text>
                             <Image style={styles.img2} source={images.imdb} />
                             <Text style={styles.date}>{movie.date}</Text>
                             <Text style={styles.description}>{movie.description}</Text>
                             <Text style={styles.personal}>Director:</Text>
-                            <Text style={styles.directorname}>{movie.director}</Text>
+                            <Text style={styles.name}>{movie.director}</Text>
                             <Text style={styles.personal}>Writers:</Text>
-                            <Text style={styles.writersname}>{movie.writers}</Text>
+                            <Text style={styles.name}>{movie.writers}</Text>
                             <Text style={styles.personal}>Actors:</Text>
-                            <Text style={styles.actorsname}>{movie.name}</Text>
-                            <View style={styles.pictures}>
-                                {pics}
-                            </View>
+                            <Text style={styles.name}>{movie.name}</Text>
+                            <View style={styles.pictures}>{pics}</View>
                         </View>
                         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
                             <Image style={styles.backImg} source={images.icon_back} />
@@ -91,7 +76,7 @@ export default class DetailsScreen extends React.Component {
                             <Image style={styles.addImg} source={images.icon_add} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details') } }>
+                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details') }}>
 
                             <Image style={styles.playImg} source={images.play} />
                         </TouchableOpacity>
@@ -112,10 +97,11 @@ const styles = StyleSheet.create({
     addBtn: {
         position: 'absolute',
         top: 30,
-        left: 365
+        right: 20
     },
     addImg: {
         width: 25,
+        resizeMode: 'contain',
         height: 25
     },
     backBtn: {
@@ -129,11 +115,19 @@ const styles = StyleSheet.create({
     },
     playBtn: {
         position: 'absolute',
-        top: Dimensions.get('window').width / 2 - 40,
+        top: Dimensions.get('window').width / 2 - 120,
         left: (Dimensions.get('window').width / 2) - 40
     },
+    imgLogo: {
+        resizeMode: 'cover',
+        width: '100%',
+        height: 300
+    },
     img: {
-        width: '100%'
+        resizeMode: 'cover',
+        width: '100%',
+        height: 100,
+        bottom: -20
     },
     contentView: {
         marginTop: -50,
@@ -144,7 +138,7 @@ const styles = StyleSheet.create({
     },
     img2: {
         width: '27%',
-        left: 212
+        left: 212,
     },
     title: {
         fontSize: 35,
@@ -154,12 +148,12 @@ const styles = StyleSheet.create({
         height: 41,
         bottom: -24
     },
-    personal:{
+    personal: {
         fontSize: 14,
         fontStyle: 'normal',
         color: '#979797',
         left: 16,
-        bottom: -15
+        bottom: -20,
     },
     date: {
         fontSize: 14,
@@ -176,29 +170,15 @@ const styles = StyleSheet.create({
         textAlign: 'auto',
         lineHeight: 27
     },
-    directorname: {
+    name: {
         fontSize: 15,
         color: '#ffffff',
-        left: 140,
-        bottom: 8,
-        textAlign: 'auto',
-        lineHeight: 27,
-    },
-    writersname: {
-        fontSize: 15,
-        color: '#ffffff',
-        left: 140,
-        bottom: 8,
-        lineHeight: 27
-    },
-    actorsname: {
-        fontSize: 15,
-        color: '#ffffff',
-        left: 140,
-        bottom: 8,
-        lineHeight: 27
+        marginLeft: 90,
+        marginRight: 10,
+        textAlign: 'auto'
     },
     item_picture: {
+        resizeMode: 'cover',
         width: '33%',
         height: 'auto',
         paddingHorizontal: 10,

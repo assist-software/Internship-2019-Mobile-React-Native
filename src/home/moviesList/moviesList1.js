@@ -36,6 +36,7 @@ export default class moviesList1 extends Component {
                 image:images.movie_logo2,
             }
         ]
+      
         if (this.state.isLoading) {
             return (
                 <View>

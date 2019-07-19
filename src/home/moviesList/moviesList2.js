@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import images from '../../utils/imagesHome';
+
 export default class moviesList2 extends Component {
     constructor(props) {
         super(props);

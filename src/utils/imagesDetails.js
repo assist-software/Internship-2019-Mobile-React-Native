@@ -14,5 +14,6 @@ export default images = {
     img_6: require('../assets/imagesDetails/image_2_8.png'),
     scene1: require('../assets/imagesDetails/scene1.jpg'),
     homeBtn: require('../assets/imagesDetails/home.png'),
-    img_profile: require('../assets/imagesDetails/profile.png')
+    img_profile: require('../assets/imagesDetails/profile.png'),
+    star: require('../assets/imagesDetails/star.png')
 }

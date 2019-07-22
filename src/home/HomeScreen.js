@@ -3,10 +3,8 @@ import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, Tou
 import images from '../utils/imagesHome';
 import Buttons1_5 from '../home/comingNextButtons/buttons0_4';
 import Rectangle from '../home/rectangle/rectangle';
-import MoviesList1 from '../home/moviesList/moviesList1';
 import Buttons5_9 from '../home/recentAddedButtons/buttons4_7';
-import MoviesList2 from '../home/moviesList/moviesList2';
-import {Dimensions} from 'react-native'
+import { Dimensions } from 'react-native'
 export default class HomeScreen extends Component {
 
   constructor(props) {
@@ -35,13 +33,13 @@ export default class HomeScreen extends Component {
             </View>
             <Rectangle navigation={this.props.navigation} />
             <View style={styles.comingNextStyleView}>
-              <View style={{ flex: 10 }}>
+              <View style={{ flex: 15 }}>
                 <Text style={styles.comingNextTextStyle}>
                   Coming Next
               </Text>
               </View>
-              <View style={{ flex: 3 }}>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate("ListMovies", {title:'Coming Next'})}>
+              <View style={{ flex: 4 }}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("ListMovies", { title: 'Coming Next' })}>
                   <Text style={styles.seeAllTextStyle}>
                     See All
                 </Text>
@@ -49,9 +47,7 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <Buttons1_5 />
-           
-            <MoviesList1 navigation={this.props.navigation} />
+            <Buttons1_5 navigation={this.props.navigation} category={"Adventure"} />
             <View style={styles.recentAddedViewStyle}>
               <View style={{ flex: 15 }}>
                 <Text style={styles.recentAddedTextStyle}>
@@ -59,7 +55,7 @@ export default class HomeScreen extends Component {
               </Text>
               </View>
               <View style={{ flex: 4 }}>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate("ListMovies", {title:'Recent Added'})}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("ListMovies", { title: 'Recent Added' })}>
                   <Text style={styles.seeAllTextStyle}>
                     See All
                 </Text>
@@ -67,8 +63,7 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <Buttons5_9 />
-            <MoviesList2 navigation={this.props.navigation} />
+            <Buttons5_9 navigation={this.props.navigation} category={"Adventure"} />
           </View>
         </ScrollView>
       </View>
@@ -90,18 +85,18 @@ const styles = StyleSheet.create(
 
     logoStyle:
     {
-      flex:1,
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop:-(Math.round(Dimensions.get('window').height)/18.285*2.811),
-      marginBottom:-(Math.round(Dimensions.get('window').height)/16.695*2.811),
+      marginTop: -(Math.round(Dimensions.get('window').height) / 18.285 * 2.811),
+      marginBottom: -(Math.round(Dimensions.get('window').height) / 16.695 * 2.811),
     },
     imageLogoStyle:
     {
-      resizeMode:'contain',
-      height:Math.round(Dimensions.get('window').height)*0.104*4.67,
-      width:Math.round(Dimensions.get('window').width)*0.185*2.63,
-      
+      resizeMode: 'contain',
+      height: Math.round(Dimensions.get('window').height) * 0.104 * 4.67,
+      width: Math.round(Dimensions.get('window').width) * 0.185 * 2.63,
+
     },
     watchAnywhereStyleView:
     {

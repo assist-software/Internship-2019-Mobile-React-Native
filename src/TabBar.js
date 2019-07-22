@@ -9,15 +9,16 @@ import FullImageScreen from "./details/FullImageScreen";
 import VideosScreen from "./details/VideosScreen";
 import GenreExploreList from "./GenreExplore/GenreExploreList";
 import ProfileScreen from "./details/ProfileScreen";
-import Video from "./home/trailerVideoYoutube/video";
-import ListMovies from './listMovies/listMovies';
+import VideoHome from "./home/trailerVideoYoutube/video";
+import ListMovies from './home/listMoviesSeeAll/listMoviesSeeAll';
 import Sidebar from '../src/home//drawerNavigator/sideBar';
+
 
 const DrawerNavigatorHomeScreen = createDrawerNavigator(
     {
         HomeDrawer:
             { screen: HomeScreen },
-        
+
     },
     {
         contentComponent: Sidebar,
@@ -77,7 +78,7 @@ const homeStackNavigator = createStackNavigator({
     Trailer_Details: {
         screen: VideosScreen
     },
-    Trailer_Home: Video,
+    Trailer_Home: VideoHome,
     ListMovies: ListMovies,
 
 

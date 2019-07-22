@@ -1,43 +1,61 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import images from '../../utils/imagesHome';
+import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/networkHome';
+
 export default class rectangle extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
+      dataSource: null,
     };
   }
-  rectangle={
-    image:images.rectangle,
-    title:'Moonlight',
-    genre:'Comedy ● Crime ● 1h 33min'
+
+  async componentDidMount() {
+    let objectApi = await getDataFromAPI(moviesAPIUrl);
+    this.setState({
+      isLoading: false,
+      dataSource: objectApi[0],
+    })
   }
-  
+
   render() {
-    
-    return (
-        <ImageBackground source={this.rectangle.image} style={styles.rectangleImageBackgroundStyle}>
+    if (this.state.isLoading) {
+      return (
+        <View>
+          <ActivityIndicator />
+        </View>
+      )
+    }
+    else {
+      let categories="";
+      for (let i = 0; i < this.state.dataSource.category.length; i++) categories += this.state.dataSource.category[i].name + " ● ";
+      categories+=this.state.dataSource.duration;
+      return (
+        <ImageBackground source={{ uri: this.state.dataSource.coverUrl }} style={styles.rectangleImageBackgroundStyle}>
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 3 }}>
               <View>
                 <Text style={styles.movieTextStyle}>
-                  {this.rectangle.title}
-                 </Text>
+                  {this.state.dataSource.title}
+                </Text>
               </View>
               <View>
                 <Text style={styles.movieCategoryTextStyle}>
-                  {this.rectangle.genre}
+                  {categories}
                 </Text>
               </View>
             </View>
             <View style={{ flex: 2 }}>
-              <TouchableOpacity style={styles.watchTrailerButtonStyle} onPress={()=>this.props.navigation.navigate('Trailer_Home')}>
+              <TouchableOpacity style={styles.watchTrailerButtonStyle} onPress={() => this.props.navigation.navigate('Trailer_Home')}>
                 <Text style={styles.watchTrailerTextStyle}>Watch Trailer ► </Text>
               </TouchableOpacity>
             </View>
           </View>
         </ImageBackground>
-    );
+      );
+    }
   }
 }
 
@@ -45,8 +63,8 @@ const styles = StyleSheet.create(
   {
     rectangleImageBackgroundStyle:
     {
-      marginTop:53,
-      marginBottom:66,
+      marginTop: 53,
+      marginBottom: 66,
       alignContent: 'center',
       justifyContent: 'center',
       borderRadius: 20,

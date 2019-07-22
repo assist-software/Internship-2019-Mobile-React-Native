@@ -1,6 +1,6 @@
 import React from 'react';
 import YouTube from 'react-native-youtube';
-import { View, Text, StyleSheet, Image} from 'react-native';
+import { View, StyleSheet, Image} from 'react-native';
 import images from '../../utils/imagesHome'
 import {Dimensions} from 'react-native'
 

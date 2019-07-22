@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import {Dimensions} from 'react-native'
+import { Dimensions } from 'react-native'
+import MoviesList2 from '../moviesList/moviesList2';
 export default class buttons4_7 extends Component {
   constructor() {
     super();
@@ -10,7 +11,7 @@ export default class buttons4_7 extends Component {
         alignItems: 'center',
         backgroundColor: '#F5044C',
         padding: 10,
-        width: Math.round(Dimensions.get('window').width)/4,
+        width: Math.round(Dimensions.get('window').width) / 4,
         borderRadius: 30.8965,
         marginRight: 5
       },
@@ -20,7 +21,7 @@ export default class buttons4_7 extends Component {
         borderWidth: 0.636364,
         borderColor: '#F5044C',
         padding: 10,
-        width: Math.round(Dimensions.get('window').width)/4,
+        width: Math.round(Dimensions.get('window').width) / 4,
         borderRadius: 30.8965,
         marginRight: 5
       },
@@ -30,7 +31,7 @@ export default class buttons4_7 extends Component {
         borderWidth: 0.636364,
         borderColor: '#F5044C',
         padding: 10,
-        width: Math.round(Dimensions.get('window').width)/4,
+        width: Math.round(Dimensions.get('window').width) / 4,
         borderRadius: 30.8965,
         marginRight: 5
       },
@@ -40,195 +41,200 @@ export default class buttons4_7 extends Component {
         borderWidth: 0.636364,
         borderColor: '#F5044C',
         padding: 10,
-        width: Math.round(Dimensions.get('window').width)/4,
+        width: Math.round(Dimensions.get('window').width) / 4,
         borderRadius: 30.8965,
         marginRight: 5
       },
+      category:'Adventure'
 
     };
 
   }
   _button5_pressed() {
     this.setState(
+      {
+        button5Style:
         {
-            button5Style:
-            {
-                alignItems: 'center',
-                backgroundColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button6Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button7Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button8Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-        }
+          alignItems: 'center',
+          backgroundColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button6Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button7Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button8Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        category:'Adventure'
+      }
     )
-}
-_button6_pressed() {
+  }
+  _button6_pressed() {
     this.setState(
+      {
+        button5Style:
         {
-            button5Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button6Style:
-            {
-                alignItems: 'center',
-                backgroundColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button7Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button8Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-        }
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button6Style:
+        {
+          alignItems: 'center',
+          backgroundColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button7Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button8Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        category:'Comedy'
+      }
     )
-}
-_button7_pressed() {
+  }
+  _button7_pressed() {
     this.setState(
+      {
+        button5Style:
         {
-            button5Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button6Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button7Style:
-            {
-                alignItems: 'center',
-                backgroundColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button8Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-        }
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button6Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button7Style:
+        {
+          alignItems: 'center',
+          backgroundColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button8Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        category:'Drama'
+      }
     )
-}
-_button8_pressed() {
+  }
+  _button8_pressed() {
     this.setState(
+      {
+        button5Style:
         {
-            button5Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button6Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button7Style:
-            {
-                alignItems: 'center',
-                borderWidth: 0.636364,
-                borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-            },
-            button8Style:
-            {
-                alignItems: 'center',
-                backgroundColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
-                borderRadius: 30.8965,
-                marginRight: 5
-                
-            },
-        }
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button6Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button7Style:
+        {
+          alignItems: 'center',
+          borderWidth: 0.636364,
+          borderColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+        },
+        button8Style:
+        {
+          alignItems: 'center',
+          backgroundColor: '#F5044C',
+          padding: 10,
+          width: Math.round(Dimensions.get('window').width) / 4,
+          borderRadius: 30.8965,
+          marginRight: 5
+
+        },
+        category:'Thriller'
+      }
     )
-}
+  }
   render() {
 
     let buttons5_9 = [];
@@ -253,10 +259,13 @@ _button8_pressed() {
       </TouchableOpacity>
     </View>)
     return (
-      <View style={styles.recentAddedButtonsView}>
-        <ScrollView horizontal='true'>
-          {buttons5_9}
-        </ScrollView>
+      <View>
+        <View style={styles.recentAddedButtonsView}>
+          <ScrollView horizontal='true'>
+            {buttons5_9}
+          </ScrollView>
+        </View>
+        <MoviesList2 navigation={this.props.navigation} category={this.state.category}/>
       </View>
 
     );

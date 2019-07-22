@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import images from '../../utils/imagesHome';
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/networkHome';
-
 export default class moviesList1 extends Component {
     constructor(props) {
         super(props);
@@ -12,26 +11,13 @@ export default class moviesList1 extends Component {
         };
     }
     async componentDidMount() {
-        let movie = await getDataFromAPI(moviesAPIUrl);
+        let objectApi = await getDataFromAPI(moviesAPIUrl);
         this.setState({
             isLoading: false,
-            dataSource: movie.movies,
+            dataSource: objectApi,
         })
     }
     render() {
-        let list=[ 
-            {
-                name:'Godzilla',
-                date:'19.09.2019',
-                image:images.movie_logo1,
-            },
-            {
-                name:'The Hustle',
-                date:'10.05.2020',
-                image:images.movie_logo2,
-            }
-        ]
-      
         if (this.state.isLoading) {
             return (
                 <View>
@@ -40,21 +26,36 @@ export default class moviesList1 extends Component {
             )
         }
         else {
-            let movies=this.state.dataSource.map((val,key)=>
-            {
-                    return (
-                        <View key={key}>
-                            <View key={key} style={{ marginRight: 12 }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Details")}>
-                                    <Image source={list[0].image} style={styles.movieStyle} />
-                                </TouchableOpacity>
-                            </View>
-                            <View key={key} style={styles.movieDescriptionView}>
-                                <Text style={styles.movieDescription1Style}>{val.title}</Text>
-                                <Text style={styles.movieDescription2Style}>{val.releaseYear}</Text>
-                            </View>
+            const date = new Date().getDate(); //Current Date
+            const month = new Date().getMonth() + 1; //Current Month
+            const year = new Date().getFullYear(); //Current Year
+            let structuredMovies = [];
+            for (let i = 0; i < this.state.dataSource.length; i++) {
+                let dayMonthYear = this.state.dataSource[i].releaseDate.split("/");
+                if (dayMonthYear[2] > year) structuredMovies.push(this.state.dataSource[i]);
+                else if (dayMonthYear[1] > month) structuredMovies.push(this.state.dataSource[i]);
+                else if (dayMonthYear[0] > date) structuredMovies.push(this.state.dataSource[i]);
+            }
+            let movies = structuredMovies.filter(movie => {
+                let index = movie.category.findIndex(category => {
+                    return (category.name == this.props.category);
+                });
+                return (index >= 0);
+            }
+            ).map((val, key) => {
+                return (
+                    <View key={key}>
+                        <View key={key} style={styles.movieStyleView}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", movie = { val })}>
+                                <Image source={{ uri: val.coverUrl }} style={styles.movieStyle} />
+                            </TouchableOpacity>
                         </View>
-                    )
+                        <View key={key} style={styles.movieDescriptionView}>
+                            <Text style={styles.movieDescription1Style}>{val.title}</Text>
+                            <Text style={styles.movieDescription2Style}>{val.releaseDate}</Text>
+                        </View>
+                    </View>
+                )
             })
             return (
                 <View style={styles.moviesListView1}>
@@ -72,6 +73,14 @@ const styles = StyleSheet.create(
         movieStyle:
         {
             borderRadius: 20,
+            width: '100%',
+            height: '100%'
+        },
+        movieStyleView:
+        {
+            marginRight: 12,
+            width: 128,
+            height: 152
         },
         movieDescription1Style:
         {
@@ -99,7 +108,7 @@ const styles = StyleSheet.create(
         },
         movieDescriptionView:
         {
-            width:100,
+            width: 100,
         }
     }
 )

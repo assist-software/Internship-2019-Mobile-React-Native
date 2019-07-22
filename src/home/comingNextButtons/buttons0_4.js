@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import {Dimensions } from "react-native";
+import { Dimensions } from "react-native";
+import MoviesList1 from '../moviesList/moviesList1';
 
 export default class buttons0_4 extends Component {
+
     constructor() {
         super();
         this.state = {
@@ -11,7 +13,7 @@ export default class buttons0_4 extends Component {
                 alignItems: 'center',
                 backgroundColor: '#F5044C',
                 padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
+                width: Math.round(Dimensions.get('window').width) / 4,
                 borderRadius: 30.8965,
                 marginRight: 5
             },
@@ -21,7 +23,7 @@ export default class buttons0_4 extends Component {
                 borderWidth: 0.636364,
                 borderColor: '#F5044C',
                 padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
+                width: Math.round(Dimensions.get('window').width) / 4,
                 borderRadius: 30.8965,
                 marginRight: 5
             },
@@ -31,7 +33,7 @@ export default class buttons0_4 extends Component {
                 borderWidth: 0.636364,
                 borderColor: '#F5044C',
                 padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
+                width: Math.round(Dimensions.get('window').width) / 4,
                 borderRadius: 30.8965,
                 marginRight: 5
             },
@@ -41,12 +43,14 @@ export default class buttons0_4 extends Component {
                 borderWidth: 0.636364,
                 borderColor: '#F5044C',
                 padding: 10,
-                width: Math.round(Dimensions.get('window').width)/4,
+                width: Math.round(Dimensions.get('window').width) / 4,
                 borderRadius: 30.8965,
                 marginRight: 5
             },
+            category: 'Adventure',
         }
     }
+
     _button1_pressed() {
         this.setState(
             {
@@ -55,7 +59,7 @@ export default class buttons0_4 extends Component {
                     alignItems: 'center',
                     backgroundColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -65,7 +69,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -75,7 +79,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -85,12 +89,14 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
+                category: "Adventure",
             }
         )
+
     }
     _button2_pressed() {
         this.setState(
@@ -101,7 +107,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -110,7 +116,7 @@ export default class buttons0_4 extends Component {
                     alignItems: 'center',
                     backgroundColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -120,7 +126,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -130,10 +136,11 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
+                category: "Comedy",
             }
         )
     }
@@ -146,7 +153,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -156,7 +163,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -165,7 +172,7 @@ export default class buttons0_4 extends Component {
                     alignItems: 'center',
                     backgroundColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -175,10 +182,11 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
+                category: 'Drama',
             }
         )
     }
@@ -191,7 +199,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -201,7 +209,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -211,7 +219,7 @@ export default class buttons0_4 extends Component {
                     borderWidth: 0.636364,
                     borderColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
                 },
@@ -220,17 +228,18 @@ export default class buttons0_4 extends Component {
                     alignItems: 'center',
                     backgroundColor: '#F5044C',
                     padding: 10,
-                    width: Math.round(Dimensions.get('window').width)/4,
+                    width: Math.round(Dimensions.get('window').width) / 4,
                     borderRadius: 30.8965,
                     marginRight: 5
-                    
+
                 },
+                category: 'Thriller'
             }
         )
     }
     render() {
+
         let buttons1_5 = [];
-        
         buttons1_5.push(<View key={1} >
             <TouchableOpacity key={1} onPress={() => this._button1_pressed()} style={this.state.button1Style}>
                 <Text style={styles.buttonTextStyle}>Adventure</Text>
@@ -252,10 +261,13 @@ export default class buttons0_4 extends Component {
             </TouchableOpacity>
         </View>);
         return (
-            <View style={styles.comingNextButtonsView}>
-                <ScrollView horizontal='true'>
-                    {buttons1_5}
-                </ScrollView>
+            <View>
+                <View style={styles.comingNextButtonsView}>
+                    <ScrollView horizontal='true'>
+                        {buttons1_5}
+                    </ScrollView>
+                </View>
+                <MoviesList1 navigation={this.props.navigation}  category={this.state.category}/>
             </View>
         );
     }

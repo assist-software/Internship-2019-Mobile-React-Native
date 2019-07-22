@@ -4,27 +4,31 @@ import menuImages from '../utils/menuButtons';
 import {Keyboard} from 'react-native'
 
 export default class GenreExploreList extends React.Component {
+
+    title = this.props.navigation.getParam('item');
+    originalData = [];
+
     constructor(props) {
         super(props);
         this.state = {
             data: [],
             error: null,
             text: "",
-            viewSource: [],
             loading: false
         };
     }
 
     componentDidMount() {
-        return fetch('http://www.json-generator.com/api/json/get/bZTksXwyDC?indent=2')
+        return fetch('http://www.json-generator.com/api/json/get/bTBniWdOWa?indent=2')
             .then((response) => response.json())
             .then((responseJson) => {
-
-                this.setState({
-                        data :responseJson,
-                        viewSource: responseJson,
-                    },function() {
+                const data = responseJson.filter(item => {
+                    let string = item.genre;
+                    if(string.includes(this.title))
+                        return item.genre ;
                 });
+                this.originalData = data;
+                this.setState({ data });
             })
             .catch((error) => {
                 console.error(error);
@@ -34,9 +38,7 @@ export default class GenreExploreList extends React.Component {
     renderHeader = () => {
         return (
             <View style={styles.search}>
-
                 <TextInput style={styles.searchText}
-                           underlineColorAndroid="transparent"
                            placeholder={'Search'}
                            placeholderTextColor='#9C9B9B'
                            onChangeText={text => this.searchFilterFunction(text)}
@@ -47,43 +49,37 @@ export default class GenreExploreList extends React.Component {
         );
     };
 
-
-
     searchFilterFunction = text => {
+        if(!text) {
+            this.setState({ data: this.originalData });
+            return
+        }
+
         const newData = this.state.data.filter(item => {
-            if(!text)
-            {
-                return true;
-            }
             const itemData = `${item.title.toUpperCase()}`;
-
             const textData = text.toUpperCase();
-
             return itemData.indexOf(textData) !== -1;
-            return (typeof item.title === 'string') &&
-                item.title.includes(text)
-
         });
-        this.setState({ viewSource: newData });
+        this.setState({ data: newData });
     };
 
     render() {
-        const title = this.props.navigation.getParam('item');
+
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>{this.title}</Text>
                 <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Explore') }}>
                     <Image style={styles.backIMG} source={menuImages.back} />
                 </TouchableOpacity>
 
                 <FlatList
                     onScroll={() => {Keyboard.dismiss()}}
-                    data={this.state.viewSource}
+                    data={this.state.data}
                     numColumns={2}
                     renderItem={({ item }) => (
                         <View style={styles.fList}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item})}>
-                                <Image style={styles.img} source={{uri : item.image}}></Image>
+                                <Image style={styles.img} source={{uri: item.image}}></Image>
                             </TouchableOpacity>
                             <Text style={styles.titluFilme}>{item.title}</Text>
                             <Text style={styles.dataFilme}>{item.date}</Text>

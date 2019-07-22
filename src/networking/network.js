@@ -1,4 +1,4 @@
-export const moviesAPIUrl = 'http://www.json-generator.com/api/json/get/bVIBEEBRDS?indent=2';
+export const moviesAPIUrl = 'http://192.168.151.218:3000/api/movies/';
 
 export default async function getDataFromAPI(url) {
     return await fetch(url)

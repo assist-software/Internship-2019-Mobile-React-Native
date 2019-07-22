@@ -8,7 +8,7 @@ export default class VideosScreen extends React.Component {
     const { width } = Dimensions.get('window');
 
     return (
-      <View style={{ backgroundColor: 'black', flex: 1}}>
+      <View style={{ backgroundColor: 'black', flex: 1, alignItems:'center',justifyContent:'center'}}>
         <YouTube
           videoId="Of52MNnXoxU" // youtube video key
           play={true}
@@ -21,7 +21,7 @@ export default class VideosScreen extends React.Component {
           onChangeQuality={e => this.setState({ quality: e.quality })}
           onError={e => this.setState({ error: e.error })}
 
-          style={{ alignSelf: 'stretch', height: 300, marginTop: 200 }}
+          style={{ alignSelf: 'stretch', height: 300}}
         />
         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
           <Image style={styles.backImg} source={images.icon_back} />

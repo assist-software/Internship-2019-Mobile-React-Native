@@ -16,8 +16,8 @@ export default class VideosScreen extends React.Component {
 
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <YouTube
-            videoId={videoId} // your tube video
+          <Youtube
+            videoId={videoId} 
             play={true}
             fullscreen={false}
             loop={true}

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/NetworkHome';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
 export default class MoviesList1 extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -21,6 +20,7 @@ export default class MoviesList1 extends Component {
     }
 
     render() {
+        
         if (this.state.isLoading) {
             return (
                 <View>

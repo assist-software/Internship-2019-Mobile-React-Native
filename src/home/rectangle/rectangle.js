@@ -68,6 +68,7 @@ const styles = StyleSheet.create(
       marginLeft:16,
       marginRight:16,
       overflow:'hidden'
+
     },
     movieTextStyle:
     {

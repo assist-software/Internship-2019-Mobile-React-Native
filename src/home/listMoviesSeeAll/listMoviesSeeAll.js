@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     color: 'white',
 
   },
+
   dataFilme: {
     marginRight: 3,
     fontSize: 15,

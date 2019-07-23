@@ -1,5 +1,5 @@
 
-export default images = {
+export default imagesDetails = {
     background_img: require('../assets/imagesDetails/image.png'),
     icon: require('../assets/imagesDetails/icon.png'),
     imdb: require('../assets/imagesDetails/imdb.png'),

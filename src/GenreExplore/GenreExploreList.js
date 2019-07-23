@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image,TextInput} from 'react-native';
+import {  Text, View, FlatList, StyleSheet, TouchableOpacity, Image,TextInput} from 'react-native';
 import menuImages from '../utils/menuButtons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Keyboard} from 'react-native'
+import getDataFromAPI, { GenreExploreListAPI } from '../home/networkingHome/NetworkHome';
 
 export default class GenreExploreList extends React.Component {
 
@@ -14,25 +16,20 @@ export default class GenreExploreList extends React.Component {
             data: [],
             error: null,
             text: "",
-            loading: false
+            loading: false,
+            database: []
         };
     }
 
-    componentDidMount() {
-        return fetch('http://www.json-generator.com/api/json/get/bTBniWdOWa?indent=2')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                const data = responseJson.filter(item => {
-                    let string = item.genre;
-                    if(string.includes(this.title))
-                        return item.genre ;
-                });
-                this.originalData = data;
-                this.setState({ data });
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+    async componentDidMount() {
+        const apiData = await getDataFromAPI(GenreExploreListAPI);
+        const data = apiData.filter(item => {
+            let string = item.genre;
+            if(string.includes(this.title))
+                return item.genre ;
+        });
+        this.originalData = data;
+        this.setState({ data });
     }
 
     renderHeader = () => {
@@ -78,11 +75,13 @@ export default class GenreExploreList extends React.Component {
                     numColumns={2}
                     renderItem={({ item }) => (
                         <View style={styles.fList}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item})}>
-                                <Image style={styles.img} source={{uri: item.image}}></Image>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item: item.title})}>
+
+                                <Image style={styles.img} source={{uri: item.image}}/>
+
                             </TouchableOpacity>
-                            <Text style={styles.titluFilme}>{item.title}</Text>
-                            <Text style={styles.dataFilme}>{item.date}</Text>
+                            <Text style={styles.movieTitle}>{item.title}</Text>
+                            <Text style={styles.movieDate}>{item.date}</Text>
                         </View>
                     )}
                     keyExtractor={item => item.title}
@@ -100,54 +99,56 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     img: {
-        left: 10,
-        top: 20,
-        width: 188,
-        height: 225,
+        width: wp('48%'),
+        height: hp('35%'),
         borderBottomLeftRadius: 19,
         borderBottomRightRadius: 19,
         borderTopLeftRadius: 19,
         borderTopRightRadius: 19,
-
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column'
     },
     fList: {
-        marginHorizontal: 4,
-        marginVertical: 16,
-        marginBottom:30
+        marginHorizontal: 2,
+        marginVertical: 2,
+        marginBottom:10,
+        alignItems: 'center',
     },
-    titluFilme:{
-        left:18,
-        top:25,
+    movieTitle:{
+        width: wp('47%'),
+        justifyContent: 'center',
         fontSize: 23,
         color: 'white',
+        marginLeft:6,
+        marginRight: 3,
     },
-    dataFilme:{
-        left:18,
-        top:25,
+    movieDate:{
         fontSize: 15,
         color: 'grey',
+        left:'1.5%',
+        width: wp('47%'),
+        marginLeft:6,
+        marginRight: 3,
     },
     backIMG: {
-        width:14,
-        height:25,
+        position: 'absolute',
+        width: wp('4%'),
+        height: hp('4%'),
     },
     backBtn: {
-        left: 14,
-        top: -23,
-        width:22,
-        height:22,
+        position: 'absolute',
+        marginTop:45,
+        marginLeft:12,
+        width: wp('4%'),
+        height: hp('4%'),
     },
     title: {
         fontSize: 23,
         color: 'white',
         fontFamily: 'SF Pro Display',
         flexDirection: 'row',
-        top:38,
+        marginTop:33,
         alignSelf: 'center',
-        marginBottom:35
+        marginBottom:18
+
     },
     header:{
         backgroundColor:'black',
@@ -155,26 +156,23 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'SF Pro Display',
         marginBottom:-19,
-
     },
     search: {
-        height: 50,
+        width: wp('90%'),
+        height: hp('8%'),
         borderColor: 'gray',
         borderWidth : 1,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
-        top: 50,
-        marginBottom:50,
+        marginBottom:30,
+        marginTop:5,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        width:'85%',
         alignSelf: 'center',
         color:'white',
         fontSize:28,
-        marginTop: 5,
-
     },
     searchText: {
         fontSize:19,
@@ -184,11 +182,8 @@ const styles = StyleSheet.create({
     },
     searchActivity:{
         alignSelf: 'center',
-        top:100,
         justifyContent: 'center',
         padding: 10,
 
     },
-
-
 });

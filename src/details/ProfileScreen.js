@@ -6,11 +6,11 @@ export default class LoginScreen extends React.Component {
         return (
             <View style={{ backgroundColor: 'black', flex: 1 }}>
                 <Text style={styles.myTextProfile}>My Profile</Text>
-                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack()}}>
-                    <Image style={styles.backImg} source={images.icon_back} />
+                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
+                    <Image style={styles.backImg} source={imagesDetails.icon_back} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.pressImg} onPress={() => { this.props.navigation.navigate('Explore') }}>
-                    <Image style={styles.logo} source={images.img_profile} />
+                    <Image style={styles.logo} source={imagesDetails.img_profile} />
                 </TouchableOpacity>
             </View>
 

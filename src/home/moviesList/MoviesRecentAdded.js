@@ -112,9 +112,9 @@ const styles = StyleSheet.create(
         movieStyle:
         {
             borderRadius: 20,
-            width:144.8,
-            height:172,
-            overflow:'hidden',
+            width: 144.8,
+            height: 172,
+            overflow: 'hidden',
         },
         movieStyleView:
         {

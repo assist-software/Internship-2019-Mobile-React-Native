@@ -1,113 +1,47 @@
 import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import images from '../utils/imagesWL';
 import menuImages from '../utils/menuButtons';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import getDataFromAPI, {WatchlistScreenAPI } from '../home/networkingHome/NetworkHome';
 export default class WatchlistScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data : [],
+      dataAPI: [],
+    };
+  }
 
-  dataArray = [
-    {
-      id: 1,
-      title: "Exemplu titlu",
-      image: images.test1,
-      date: "15/07/2019"
-    },
-    {
-      id: 2,
-      title: "Exemplu titlu",
-      image: images.test2,
-      date: "15/07/2019"
-    },
-    {
-      id: 3,
-      title: "Exemplu titlu",
-      image: images.test3,
-      date: "15/07/2019"
-    },
-    {
-      id: 4,
-      title: "Exemplu titlu",
-      image: images.test4,
-      date: "15/07/2019"
-    },
-    {
-      id: 5,
-      title: "Exemplu titlu",
-      image: images.test5,
-      date: "15/07/2019"
-    },
-    {
-      id: 6,
-      title: "Exemplu titlu",
-      image: images.test6,
-      date: "15/07/2019"
-    },
-    {
-      id: 7,
-      title: "Exemplu titlu",
-      image: images.test1,
-      date: "15/07/2019"
-    },
-    {
-      id: 8,
-      title: "Exemplu titlu",
-      image: images.test3,
-      date: "15/07/2019"
-    },
-    {
-      id: 9,
-      title: "Exemplu titlu",
-      image: images.test2,
-      date: "15/07/2019"
-    },
-    {
-      id: 10,
-      title: "Exemplu titlu",
-      image: images.test5,
-      date: "15/07/2019"
-    },
-    {
-      id: 11,
-      title: "Exemplu titlu",
-      image: images.test6,
-      date: "15/07/2019"
-    },
-    {
-      id: 12,
-      title: "Exemplu titlu",
-      image: images.test4,
-      date: "15/07/2019"
-    }
-  ]
+  async componentDidMount() {
+    const data = await getDataFromAPI(WatchlistScreenAPI);
+    this.setState({ data });
+    console.log(data)
+  }
 
   render() {
-    
-    
-
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Watchlist</Text>
-        <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
-          <Image style={styles.backIMG} source={menuImages.back} />
-        </TouchableOpacity>
-        <FlatList
-          data={this.dataArray}
-          numColumns={2}
-          renderItem={({ item }) =>
-            <View style={styles.fList}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', { item })}>
-                <Image style={styles.img} source={item.image}></Image>
-              </TouchableOpacity>
+        <View style={styles.container}>
+          <Text style={styles.title}>Watchlist</Text>
+          <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
+            <Image style={styles.backIMG} source={menuImages.back} />
+          </TouchableOpacity>
 
-              <Text style={styles.titluFilme}>{item.title}</Text>
-              <Text style={styles.dataFilme}>{item.date}</Text>
-            </View>
-          } keyExtractor={(item, index) => index.toString()}
-        />
+          <FlatList
+              data={this.state.data}
+              numColumns={2}
+              renderItem={({ item }) =>
+                  <View style={styles.fList}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', { item })}>
+                      <Image style={styles.img} source={{uri: item.image}}/>
+                    </TouchableOpacity>
+                    <Text style={styles.movieTitle}>{item.title}</Text>
+                    <Text style={styles.movieDate}>{item.date}</Text>
+                  </View>
+              } keyExtractor={(item, index) => index.toString()}
+          />
 
-      </View>
+        </View>
     );
-   t
   }
 
 }
@@ -118,51 +52,55 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   img: {
-    left: 10,
-    top: 20,
-    width: 188,
-    height: 225,
+    width: wp('48%'),
+    height: hp('35%'),
     borderBottomLeftRadius: 19,
     borderBottomRightRadius: 19,
     borderTopLeftRadius: 19,
     borderTopRightRadius: 19,
-
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  backIMG: {
-    width: 18,
-    height: 25,
-  },
-  backBtn: {
-    left: 10,
-    top: -16,
-    width: 22,
-    height: 22
-  },
-  title: {
-    fontSize: 25,
-    color: 'white',
-    fontFamily: 'SF Pro Display',
-    textAlign: 'center',
-    flexDirection: 'row',
-    top: 12,
   },
   fList: {
-    marginHorizontal: 4,
-    marginVertical: 16,
+    flex:1,
+    marginHorizontal: 2,
+    marginVertical: 1.8,
+    marginBottom:1,
   },
-  titluFilme: {
-    left: 18,
-    top: 25,
+  movieTitle:{
+    width: wp('47%'),
+    justifyContent: 'center',
     fontSize: 23,
     color: 'white',
+    marginLeft:6,
+    marginRight: 3,
   },
-  dataFilme: {
-    left: 18,
-    top: 25,
+  movieDate:{
+    justifyContent: 'center',
+    marginLeft:6,
     fontSize: 15,
     color: 'grey',
-  }
+  },
+  backIMG: {
+    position: 'absolute',
+    width: wp('4%'),
+    height: hp('4%'),
+  },
+  backBtn: {
+    position: 'absolute',
+    marginTop:45,
+    marginLeft:12,
+    width: wp('4%'),
+    height: hp('4%'),
+  },
+  title: {
+    fontSize: 23,
+    color: 'white',
+    fontFamily: 'SF Pro Display',
+    flexDirection: 'row',
+    marginTop:41,
+    alignSelf: 'center',
+    marginBottom:22
+
+  },
 });

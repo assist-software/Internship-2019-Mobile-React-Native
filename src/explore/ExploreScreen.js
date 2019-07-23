@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, ScrollView, View, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import images from '../utils/menuButtons';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import getDataFromAPI, { ExploreScreenAPI } from '../home/networkingHome/networkHome';
 
 export default class ExploreScreen extends React.Component {
     state = {
@@ -10,12 +11,12 @@ export default class ExploreScreen extends React.Component {
     componentWillMount(){
         this.fetchData();
     }
-    fetchData = async () =>{
-        const response = await fetch("http://www.json-generator.com/api/json/get/ceTOllpSUO?indent=2")
-        const json = await response.json();
-        this.setState(({data:json}))
 
+    fetchData = async () =>{
+        const data = await getDataFromAPI(ExploreScreenAPI);
+        this.setState({data})
     }
+
     render() {
         return (
             <ScrollView stickyHeaderIndices={[0]}
@@ -33,7 +34,7 @@ export default class ExploreScreen extends React.Component {
                     renderItem={({ item }) =>
                         <View style={styles.fList}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('navGenreExploreList', {item : item.name})}>
-                                <Image style={styles.img} source={images.rectangleBox}></Image>
+                                <Image style={styles.img} source={images.rectangleBox}/>
                                 <Text style={styles.genre}>{item.name}</Text>
                                 <Text style={styles.nrMovies}>{item.movieNr}</Text>
                             </TouchableOpacity>
@@ -41,7 +42,6 @@ export default class ExploreScreen extends React.Component {
                     }keyExtractor={(item, index) => index.toString()}
                 />
             </ScrollView>
-
         );
     }
 }
@@ -49,72 +49,74 @@ export default class ExploreScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
-    nrMovies:{
-        fontSize: 19,
-        color: 'white',
-        fontFamily: 'SF Pro Display',
-        textAlign: 'center',
-        flexDirection: 'row',
-        top:-59,
-        left:10,
-        marginBottom:-10
+    fList: {
+        marginHorizontal: 3,
+        marginVertical:0.1,
+        marginBottom: -68,
+        left:'3.7%'
     },
     genre:{
         fontSize: 28,
         color: 'white',
         fontFamily: 'SF Pro Display',
-        textAlign: 'center',
         flexDirection: 'row',
-        top:-70,
-        left:10,
-        marginBottom:-15
+        textAlign: 'center',
+        position:'relative',
+        top:"-60%"
+    },
+    nrMovies:{
+        fontSize: 28,
+        color: 'white',
+        fontFamily: 'SF Pro Display',
+        flexDirection: 'row',
+        textAlign: 'center',
+        position:'relative',
+        top:'-62%',
     },
     container: {
         flex: 1,
         backgroundColor: 'black'
     },
     img: {
-        left: 10,
-        top: 42,
-        width: 188,
-        height: 164,
+        width: wp('47%'),
+        height: hp('23%'),
         borderBottomLeftRadius: 19,
         borderBottomRightRadius: 19,
         borderTopLeftRadius: 19,
         borderTopRightRadius: 19,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
-    },
+        flexDirection: 'column',
+        position:'relative'
+    } ,
     backIMG: {
-        width:14,
-        height:25,
+        position: 'absolute',
+        width: wp('4%'),
+        height: hp('4%'),
     },
     backBtn: {
-        left: 14,
-        top: -18,
-        width:22,
-        height:22,
+        position: 'absolute',
+        marginTop:45,
+        marginLeft:12,
+        width: wp('4%'),
+        height: hp('4%'),
     },
-    title: {
-        fontSize: 23,
+    title: {fontSize: 23,
         color: 'white',
         fontFamily: 'SF Pro Display',
         flexDirection: 'row',
-        top:25,
-        left:169,
-        marginBottom:19
+        marginTop:39,
+        alignSelf: 'center',
+        marginBottom:18
+
     },
     header:{
         backgroundColor:'black',
         fontSize: 25,
         color: 'white',
         fontFamily: 'SF Pro Display',
-        marginBottom:-19,
-    },
-    fList: {
-        marginHorizontal: 4,
-        marginVertical: -15,
+        marginBottom:5,
+        paddingBottom: 2
     },
 });
 

@@ -117,13 +117,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginVertical: 16,
   },
-  titluFilme: {
+  movieTitle: {
     left: 18,
     top: 25,
     fontSize: 23,
     color: 'white',
   },
-  dataFilme: {
+  movieDate: {
     left: 18,
     top: 25,
     fontSize: 15,

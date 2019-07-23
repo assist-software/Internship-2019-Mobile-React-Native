@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
 import images from '../utils/imagesDetails';
 import moment from 'moment';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 export default class DetailsScreen extends React.Component {
@@ -46,11 +47,11 @@ export default class DetailsScreen extends React.Component {
                     <View>
                         <Image style={styles.imgLogo} source={{ uri: movie.coverUrl }} />
                         <View style={styles.contentView}>
-                            <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <View><Text style={styles.title}>{movie.title}</Text></View>
-                                <View><Image style={styles.img2} source={imagesDetails.imdb} /></View>
+                            <View style={styles.header}>
+                                <Text style={styles.title}>{movie.title}</Text>
+                                <Image style={styles.imdbicon} source={imagesDetails.imdb} />
                                 <Text style={styles.note}>{movie.imdbScore}</Text>
-                                <View><Image style={styles.star} source={imagesDetails.star} /></View>
+                               <Image style={styles.star} source={imagesDetails.star} />
                             </View>
                             <Text style={styles.date}>{movie.releaseDate}</Text>
                             <Text style={styles.description}>{movie.description}</Text>
@@ -80,9 +81,15 @@ export default class DetailsScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    header:
+    {
+        flex:1,
+        flexDirection:'row',
+        marginHorizontal:'4%',
+    },
     playImg: {
-        width: 80,
-        height: 80
+        width: wp('14%'),
+        height: hp('14%')
     },
     addBtn: {
         position: 'absolute',
@@ -123,8 +130,7 @@ const styles = StyleSheet.create({
     star: {
         width: 25,
         height: 25,
-        marginTop: 37,
-        marginLeft: 5
+        top:'7%'
     },
     contentView: {
         flex: 1,
@@ -134,24 +140,25 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'black'
     },
-    img2: {
-        width: 107,
-        height: 107,
+    imdbicon: {
+        width: wp('12%'),
+        height: hp('12%'),
+        left:'-14%',
+        top:'1%',
     },
     title: {
-        fontSize: 36,
+        fontSize: 25,
         color: 'white',
         fontWeight: 'bold',
-        left: 16,
-        height: 41,
-        bottom: -24
+        flex:1,
+        textAlignVertical:'center',
+        marginRight:'2%',
     },
     note: {
         fontSize: 20,
         color: '#979797',
-        marginTop: 35,
-        marginLeft: -15,
-        marginHorizontal: 3
+        textAlignVertical:'center',
+        left:'-6%'
     },
     personal: {
         fontSize: 14,
@@ -164,8 +171,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontStyle: 'normal',
         color: '#979797',
-        left: 16,
-        marginTop: -40,
+        left: '4%',
     },
     description: {
         fontSize: 15,

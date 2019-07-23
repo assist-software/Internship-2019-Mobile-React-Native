@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Dimensions } from 'react-native'
-import MoviesList2 from '../moviesList/moviesList2';
-export default class buttons4_7 extends Component {
+import MoviesList2 from '../moviesList/MoviesRecentAdded';
+export default class RecentAdded extends Component {
   constructor() {
     super();
     this.state = {

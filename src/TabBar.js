@@ -9,9 +9,9 @@ import FullImageScreen from "./details/FullImageScreen";
 import VideosScreen from "./details/VideosScreen";
 import GenreExploreList from "./GenreExplore/GenreExploreList";
 import ProfileScreen from "./details/ProfileScreen";
-import VideoHome from "./home/trailerVideoYoutube/video";
-import ListMovies from './home/listMoviesSeeAll/listMoviesSeeAll';
-import Sidebar from '../src/home//drawerNavigator/sideBar';
+import VideoHome from "./home/trailerVideoYoutube/Video";
+import ListMovies from './home/listMoviesSeeAll/ListMoviesSeeAll';
+import Sidebar from '../src/home//drawerNavigator/SideBar';
 
 
 const DrawerNavigatorHomeScreen = createDrawerNavigator(

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
-import images from '../../utils/imagesHome';
-import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/networkHome';
-export default class moviesList1 extends Component {
+import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/NetworkHome';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+export default class MoviesList1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,6 +11,7 @@ export default class moviesList1 extends Component {
             dataSource: null,
         };
     }
+
     async componentDidMount() {
         let objectApi = await getDataFromAPI(moviesAPIUrl);
         this.setState({
@@ -17,6 +19,7 @@ export default class moviesList1 extends Component {
             dataSource: objectApi,
         })
     }
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -24,17 +27,53 @@ export default class moviesList1 extends Component {
                     <ActivityIndicator />
                 </View>
             )
-        }
-        else {
-            const date = new Date().getDate(); //Current Date
-            const month = new Date().getMonth() + 1; //Current Month
-            const year = new Date().getFullYear(); //Current Year
+        } else {
+            const dateCurrent = new Date().getDate(); //Current Date
+            const monthCurrent = new Date().getMonth() + 1; //Current Month, January == 0
+            const yearCurrent = new Date().getFullYear(); //Current Year
             let structuredMovies = [];
+            let k = -1;
             for (let i = 0; i < this.state.dataSource.length; i++) {
-                let dayMonthYear = this.state.dataSource[i].releaseDate.split("/");
-                if (dayMonthYear[2] > year) structuredMovies.push(this.state.dataSource[i]);
-                else if (dayMonthYear[1] > month) structuredMovies.push(this.state.dataSource[i]);
-                else if (dayMonthYear[0] > date) structuredMovies.push(this.state.dataSource[i]);
+                let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
+                let dd = dataISO.getDate();
+                let mm = dataISO.getMonth() + 1; 
+                let yyyy = dataISO.getFullYear();
+                if (yyyy > yearCurrent) {
+                    structuredMovies.push(this.state.dataSource[i]);
+                    k += 1;
+                    if (dd < 10) {
+                        dd = '0' + dd;
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm;
+                    }
+                    let today = dd + '/' + mm + '/' + yyyy;
+                    structuredMovies[k].releaseDate = today;
+                }
+                else if (mm > monthCurrent) {
+                    structuredMovies.push(this.state.dataSource[i]);
+                    k += 1;
+                    if (dd < 10) {
+                        dd = '0' + dd;
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm;
+                    }
+                    let today = dd + '/' + mm + '/' + yyyy;
+                    structuredMovies[k].releaseDate = today;
+                }
+                else if (dd > dateCurrent) {
+                    structuredMovies.push(this.state.dataSource[i]);
+                    k += 1;
+                    if (dd < 10) {
+                        dd = '0' + dd;
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm;
+                    }
+                    let today = dd + '/' + mm + '/' + yyyy;
+                    structuredMovies[k].releaseDate = today;
+                }
             }
             let movies = structuredMovies.filter(movie => {
                 let index = movie.category.findIndex(category => {
@@ -46,7 +85,7 @@ export default class moviesList1 extends Component {
                 return (
                     <View key={key}>
                         <View key={key} style={styles.movieStyleView}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", movie = { val })}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", { movie: val })}>
                                 <Image source={{ uri: val.coverUrl }} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
@@ -73,14 +112,15 @@ const styles = StyleSheet.create(
         movieStyle:
         {
             borderRadius: 20,
-            width: '100%',
-            height: '100%'
+            width:144.8,
+            height:172,
+            overflow:'hidden',
         },
         movieStyleView:
         {
-            marginRight: 12,
-            width: 128,
-            height: 152
+            marginRight: 8,
+            width: 144.8,
+            height: 172,
         },
         movieDescription1Style:
         {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, TextInput, ImageBackground, Dimensions, Image, TouchableOpacity } from 'react-native';
 import images from '../../utils/imagesSidebar';
-import TextInputs from '../drawerNavigator/textinputs'
+import TextInputs from '../drawerNavigator/Textinputs'
 
-export default class sideBar extends Component {
+export default class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ export default class sideBar extends Component {
     };
   }
 
-  _Forgot() {
+  _forgot() {
     this.setState({
       text1: "Reset your password",
       text2: "We will send you over email the instructions in order to get your password reseted",
@@ -40,7 +40,7 @@ export default class sideBar extends Component {
       },
     })
   }
-  _Create(text) {
+  _create(text) {
     this.setState(
       {
         text1: "Let's create",
@@ -87,7 +87,7 @@ export default class sideBar extends Component {
           </View>
           <TextInputs text1={this.state.text1} text2={this.state.text2} />
           <View style={styles.forgotPasswordViewStyle}>
-            <TouchableOpacity onPress={() => this._Forgot()}>
+            <TouchableOpacity onPress={() => this._forgot()}>
               <Text style={styles.forgotPasswordTextStyle}>
                 {this.state.textUnderInput}
               </Text>
@@ -105,14 +105,13 @@ export default class sideBar extends Component {
             <Text style={styles.textUnderButtonTextStyle}>
               {this.state.textUnderButton}
             </Text>
-            <TouchableOpacity onPress={() => this._Create(this.state.textUnderButtonUnderline)} style={styles.textUnderlineTouchableOpacityStyle}>
+            <TouchableOpacity onPress={() => this._create(this.state.textUnderButtonUnderline)} style={styles.textUnderlineTouchableOpacityStyle}>
               <Text style={styles.textUnderButtonUnderlineTextStyle}>
                 {this.state.textUnderButtonUnderline}
               </Text >
             </TouchableOpacity>
           </View>
         </ImageBackground>
-
       </ScrollView>
     );
   }
@@ -159,7 +158,7 @@ const styles = StyleSheet.create(
     {
       marginRight: 16,
       flex: 1,
-      marginTop: -(Math.round(Dimensions.get('window').height) / 18.285 * 0.711),
+      marginTop: -(Math.round(Dimensions.get('window').height) / 18.285 * 0.511),
       alignItems:"flex-end"
     },
     forgotPasswordTextStyle:
@@ -208,10 +207,6 @@ const styles = StyleSheet.create(
       fontSize: 14,
       lineHeight: 80,
       color: '#9C9B9B'
-    },
-    textUnderlineTouchableOpacityStyle:
-    {
-
     },
     textUnderButtonUnderlineTextStyle:
     {

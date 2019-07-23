@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Dimensions } from "react-native";
-import MoviesList1 from '../moviesList/moviesList1';
+import MoviesList1 from '../moviesList/MoviesComingNext';
 
-export default class buttons0_4 extends Component {
+export default class Coming extends Component {
 
     constructor() {
         super();

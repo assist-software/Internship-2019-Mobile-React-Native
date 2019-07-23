@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
-import images from '../../utils/imagesHome';
-import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/networkHome';
-
-export default class rectangle extends Component {
+import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/NetworkHome';
+import { Dimensions } from 'react-native'
+export default class Rectangle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +15,7 @@ export default class rectangle extends Component {
     let objectApi = await getDataFromAPI(moviesAPIUrl);
     this.setState({
       isLoading: false,
-      dataSource: objectApi[0],
+      dataSource: objectApi[Math.floor(Math.random()*objectApi.length)],
     })
   }
 
@@ -34,8 +33,8 @@ export default class rectangle extends Component {
       categories+=this.state.dataSource.duration;
       return (
         <ImageBackground source={{ uri: this.state.dataSource.coverUrl }} style={styles.rectangleImageBackgroundStyle}>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-            <View style={{ flex: 3 }}>
+          <View style={{ flex: 1, flexDirection: 'row' ,marginTop:30}}>
+            <View style={{ flex: 3 , justifyContent:'flex-end',marginBottom:40,}}>
               <View>
                 <Text style={styles.movieTextStyle}>
                   {this.state.dataSource.title}
@@ -47,9 +46,9 @@ export default class rectangle extends Component {
                 </Text>
               </View>
             </View>
-            <View style={{ flex: 2 }}>
-              <TouchableOpacity style={styles.watchTrailerButtonStyle} onPress={() => this.props.navigation.navigate('Trailer_Home')}>
-                <Text style={styles.watchTrailerTextStyle}>Watch Trailer ► </Text>
+            <View style={{ flex: 2 , justifyContent:'flex-end',marginBottom:40,}}>
+              <TouchableOpacity style={styles.watchTrailerButtonStyle} onPress={() => this.props.navigation.navigate('Trailer_Home', {youtube:this.state.dataSource.trailerUrl})}>
+                <Text style={styles.watchTrailerTextStyle}>Watch Trailer ►</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -65,16 +64,17 @@ const styles = StyleSheet.create(
     {
       marginTop: 53,
       marginBottom: 66,
-      alignContent: 'center',
-      justifyContent: 'center',
-      borderRadius: 20,
+      borderRadius:30,
+      marginLeft:16,
+      marginRight:16,
+      overflow:'hidden'
     },
     movieTextStyle:
     {
       paddingLeft: 16,
       marginTop: 102,
-      fontSize: 36,
-      lineHeight: 60,
+      fontSize: 36*Math.round(Dimensions.get('window').width)/411,
+      lineHeight: 40,
       display: 'flex',
       alignItems: 'center',
       color: 'white'
@@ -85,16 +85,17 @@ const styles = StyleSheet.create(
       display: 'flex',
       alignItems: 'center',
       color: 'white',
-      fontSize: 13,
+      fontSize: 13*Math.round(Dimensions.get('window').width)/411,
       lineHeight: 16
     },
     watchTrailerButtonStyle:
     {
       marginTop: 137,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: 'white',
       borderRadius: 30.8965,
       alignItems: 'center',
-      padding: 10
+      padding: 10,
+      marginRight:16,
     },
     watchTrailerTextStyle:
     {

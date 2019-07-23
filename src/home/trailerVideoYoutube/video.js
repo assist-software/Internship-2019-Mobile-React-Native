@@ -1,18 +1,23 @@
 import React from 'react';
 import YouTube from 'react-native-youtube';
-import { View, StyleSheet, Image} from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import images from '../../utils/imagesHome'
-import {Dimensions} from 'react-native'
+import { Dimensions } from 'react-native'
 
 export default class VideosScreen extends React.Component {
-
+  youtube_parser(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length == 11) ? match[7] : false;
+  }
   render() {
+    videoId = this.youtube_parser(this.props.navigation.getParam("youtube"))
     return (
 
       <View style={{ flex: 1, backgroundColor: 'black' }}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <YouTube
-            videoId="9NJj12tJzqc" // your tube video
+            videoId={videoId} // your tube video
             play={true}
             fullscreen={false}
             loop={true}
@@ -21,7 +26,7 @@ export default class VideosScreen extends React.Component {
             onChangeState={e => this.setState({ status: e.state })}
             onChangeQuality={e => this.setState({ quality: e.quality })}
             onError={e => this.setState({ error: e.error })}
-            style={{ alignSelf: 'stretch', height: 300}}
+            style={{ alignSelf: 'stretch', height: 300 }}
           />
         </View>
         <View style={styles.logoStyle}>
@@ -32,20 +37,19 @@ export default class VideosScreen extends React.Component {
   }
 }
 
-const styles=StyleSheet.create(
+const styles = StyleSheet.create(
   {
     logoStyle:
     {
       height: 105,
       justifyContent: 'center',
       alignItems: 'center',
-      
     },
     imageLogoStyle:
     {
-      resizeMode:'contain',
-      height:Math.round(Dimensions.get('window').height)*0.104*4.67,
-      width:Math.round(Dimensions.get('window').width)*0.185*2.63,
+      resizeMode: 'contain',
+      height: Math.round(Dimensions.get('window').height) * 0.104 * 4.67,
+      width: Math.round(Dimensions.get('window').width) * 0.185 * 2.63,
     },
   }
 )

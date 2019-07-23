@@ -20,7 +20,7 @@ export default class textinputs extends Component {
         };
     }
 
-    _Focus(n, text) {
+    _focus(n, text) {
         if (text === 'Email Adress') {
             this.setState(
                 {
@@ -53,61 +53,67 @@ export default class textinputs extends Component {
 
 
     }
-    _Blur(n, text) {
-        if (n === 1)
+    _blur(n, text) {
+        if (n === 1) {
             this.setState(
                 {
                     textInput1BorderColor: '#9C9B9B',
                 }
             )
-        else if (n === 2)
+            if (text === "")
+                this.setState(
+                    {
+                        valueEmail: 'Email Adress'
+                    }
+                )
+        }
+        else if (n === 2) {
             this.setState(
                 {
                     textInput2BorderColor: '#9C9B9B',
                 }
             )
-        else if (n === 3)
+            if (text === '')
+                this.setState(
+                    {
+                        valuePass: 'Password',
+                        secureText: false
+
+                    }
+                )
+        }
+        else if (n === 3) {
             this.setState(
                 {
                     textInput3BorderColor: '#9C9B9B',
                 }
             )
-        if (text === '')
-            this.setState(
-                {
-                    valueEmail: 'Email Adress'
-                }
-            )
-        else if (text === '')
-            this.setState(
-                {
-                    valuePass: 'Password'
-                }
-            )
-        else if (text === '')
-            this.setState(
-                {
-                    valueName: 'Full Name'
-                }
-            )
+            if (text === '')
+                this.setState(
+                    {
+                        valueName: 'Full Name'
+                    }
+                )
+        }
 
 
     }
-    _ChangeText1(text) {
+    _changeText1(text) {
         this.setState(
             {
                 valueEmail: text,
             }
         )
     }
-    _ChangeText2(text) {
+    _changeText2(text) {
         this.setState(
             {
                 valuePass: text,
+                secureText: true,
             }
         )
     }
-    _ChangeText3(text) {
+    _changeText3(text) {
         this.setState(
             {
                 valueName: text,
@@ -123,19 +129,19 @@ export default class textinputs extends Component {
                     <View style={styles.firstInputStyleView}>
 
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
-                            onFocus={() => this._Focus(1, this.state.valueEmail)}
-                            onBlur={() => this._Blur(1, this.state.valueEmail)}
+                            onFocus={() => this._focus(1, this.state.valueEmail)}
+                            onBlur={() => this._blur(1, this.state.valueEmail)}
                             value={this.state.valueEmail}
-                            onChangeText={(text) => this._ChangeText1(text)}
+                            onChangeText={(text) => this._changeText1(text)}
                         />
                     </View>
                     <View style={styles.secondInputStyleView}>
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput2BorderColor }]}
-                            onFocus={() => this._Focus(2, this.state.valuePass)}
-                            onBlur={() => this._Blur(2, this.state.valuePass)}
+                            onFocus={() => this._focus(2, this.state.valuePass)}
+                            onBlur={() => this._blur(2, this.state.valuePass)}
                             secureTextEntry={this.state.secureText}
                             value={this.state.valuePass}
-                            onChangeText={(text) => this._ChangeText2(text)}
+                            onChangeText={(text) => this._changeText2(text)}
                         />
                     </View>
                 </View>
@@ -146,28 +152,28 @@ export default class textinputs extends Component {
                     <View style={styles.firstInputStyleView}>
 
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput3BorderColor }]}
-                            onFocus={() => this._Focus(3, this.state.valueName)}
-                            onBlur={() => this._Blur(3, this.state.valuePass)}
+                            onFocus={() => this._focus(3, this.state.valueName)}
+                            onBlur={() => this._blur(3, this.state.valueName)}
                             value={this.state.valueName}
-                            onChangeText={(text) => this._ChangeText3(text)}
+                            onChangeText={(text) => this._changeText3(text)}
                         />
                     </View>
                     <View style={styles.firstInputStyleView}>
 
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
-                            onFocus={() => this._Focus(1, this.state.valueEmail)}
-                            onBlur={() => this._Blur(1, this.state.valueEmail)}
+                            onFocus={() => this._focus(1, this.state.valueEmail)}
+                            onBlur={() => this._blur(1, this.state.valueEmail)}
                             value={this.state.valueEmail}
-                            onChangeText={(text) => this._ChangeText1(text)}
+                            onChangeText={(text) => this._changeText1(text)}
                         />
                     </View>
                     <View style={styles.secondInputStyleView}>
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput2BorderColor }]}
-                            onFocus={() => this._Focus(2, this.state.valuePass)}
-                            onBlur={() => this._Blur(2, this.state.valuePass)}
+                            onFocus={() => this._focus(2, this.state.valuePass)}
+                            onBlur={() => this._blur(2, this.state.valuePass)}
                             secureTextEntry={this.state.secureText}
                             value={this.state.valuePass}
-                            onChangeText={(text) => this._ChangeText2(text)}
+                            onChangeText={(text) => this._changeText2(text)}
                         />
                     </View>
                 </View>
@@ -177,10 +183,10 @@ export default class textinputs extends Component {
                 <View style={styles.firstInputStyleView}>
 
                     <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
-                        onFocus={() => this._Focus(1, this.state.valueEmail)}
-                        onBlur={() => this._Blur(1, this.state.valuePass)}
+                        onFocus={() => this._focus(1, this.state.valueEmail)}
+                        onBlur={() => this._blur(1, this.state.valuePass)}
                         value={this.state.valueEmail}
-                        onChangeText={(text) => this._ChangeText1(text)}
+                        onChangeText={(text) => this._changeText1(text)}
                     />
                 </View>
             )

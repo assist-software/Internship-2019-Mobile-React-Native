@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import menuImages from '../../utils/menuButtons';
-import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/networkHome';
+import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/NetworkHome';
+
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default class WatchlistScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -29,23 +31,96 @@ export default class WatchlistScreen extends React.Component {
       )
     else {
       let title = this.props.navigation.getParam('title');
-      const date = new Date().getDate(); //Current Date
-      const month = new Date().getMonth() + 1; //Current Month
-      const year = new Date().getFullYear(); //Current Year
+      const dateCurrent = new Date().getDate(); //Current Date
+      const monthCurrent = new Date().getMonth() + 1; //Current Month
+      const yearCurrent = new Date().getFullYear(); //Current Year
       let structuredMovies = [];
+      let k = -1;
       if (title === "Coming Next")
         for (let i = 0; i < this.state.dataSource.length; i++) {
-          let dayMonthYear = this.state.dataSource[i].releaseDate.split("/");
-          if (dayMonthYear[2] > year) structuredMovies.push(this.state.dataSource[i]);
-          else if (dayMonthYear[1] > month) structuredMovies.push(this.state.dataSource[i]);
-          else if (dayMonthYear[0] > date) structuredMovies.push(this.state.dataSource[i]);
+          let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
+          let dd = dataISO.getDate();
+          let mm = dataISO.getMonth() + 1; //January is 0!
+          let yyyy = dataISO.getFullYear();
+          if (yyyy > yearCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[k].releaseDate = today;
+          }
+          else if (mm > monthCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[k].releaseDate = today;
+          }
+          else if (dd > dateCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[k].releaseDate = today;
+          }
         }
       else if (title === "Recent Added")
         for (let i = 0; i < this.state.dataSource.length; i++) {
-          let dayMonthYear = this.state.dataSource[i].releaseDate.split("/");
-          if (dayMonthYear[2] < year) structuredMovies.push(this.state.dataSource[i]);
-          else if (dayMonthYear[1] < month) structuredMovies.push(this.state.dataSource[i]);
-          else if (dayMonthYear[0] < date) structuredMovies.push(this.state.dataSource[i]);
+          let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
+          let dd = dataISO.getDate();
+          let mm = dataISO.getMonth() + 1; //January is 0!
+          let yyyy = dataISO.getFullYear();
+          if (yyyy <= yearCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[i].releaseDate = today;
+          }
+          else if (mm <= monthCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[i].releaseDate = today;
+          }
+          else if (dd <= dateCurrent) {
+            structuredMovies.push(this.state.dataSource[i]);
+            k += 1;
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            let today = dd + '/' + mm + '/' + yyyy;
+            structuredMovies[i].releaseDate = today;
+          }
         }
       return (
         <View style={styles.container}>
@@ -82,18 +157,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   img: {
-    left: 10,
-    top: 20,
-    width: 188,
-    height: 225,
+    width: wp('48%'),
+    height: hp('35%'),
     borderBottomLeftRadius: 19,
     borderBottomRightRadius: 19,
     borderTopLeftRadius: 19,
     borderTopRightRadius: 19,
-
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
   },
   backIMG: {
     width: 18,
@@ -112,21 +183,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flexDirection: 'row',
     top: 12,
+
   },
   fList: {
+    flex:1,
     marginHorizontal: 4,
-    marginVertical: 16,
+    marginVertical: 10,
   },
   titluFilme: {
-    left: 18,
-    top: 25,
+    marginLeft:4,
+    marginRight: 3,
     fontSize: 23,
     color: 'white',
+
   },
   dataFilme: {
-    left: 18,
-    top: 25,
+    marginRight: 3,
     fontSize: 15,
     color: 'grey',
+    marginLeft:4,
+
   }
 });

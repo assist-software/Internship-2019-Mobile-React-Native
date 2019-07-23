@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
 import images from '../utils/imagesHome';
-import Buttons1_5 from '../home/comingNextButtons/buttons0_4';
-import Rectangle from '../home/rectangle/rectangle';
-import Buttons5_9 from '../home/recentAddedButtons/buttons4_7';
+import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
+import Rectangle from '../home/rectangle/Rectangle';
+import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
+
 export default class HomeScreen extends Component {
 
   constructor(props) {
@@ -47,7 +48,7 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <Buttons1_5 navigation={this.props.navigation} category={"Adventure"} />
+            <ComingNextButtons navigation={this.props.navigation} category={"Adventure"} />
             <View style={styles.recentAddedViewStyle}>
               <View style={{ flex: 15 }}>
                 <Text style={styles.recentAddedTextStyle}>
@@ -63,12 +64,10 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <Buttons5_9 navigation={this.props.navigation} category={"Adventure"} />
+            <RecentAddedButtons navigation={this.props.navigation} category={"Adventure"} />
           </View>
         </ScrollView>
       </View>
-
-
 
     );
   }
@@ -130,8 +129,7 @@ const styles = StyleSheet.create(
       marginBottom: 15,
 
     },
-    comingNextTextStyle:
-    {
+    comingNextTextStyle: {
       paddingLeft: 16,
       fontSize: 34,
       lineHeight: 41,

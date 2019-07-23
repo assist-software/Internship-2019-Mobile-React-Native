@@ -68,6 +68,7 @@ const styles = StyleSheet.create(
       alignContent: 'center',
       justifyContent: 'center',
       borderRadius: 20,
+      position:'relative'
     },
     movieTextStyle:
     {

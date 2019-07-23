@@ -50,7 +50,8 @@ export default class moviesList2 extends Component {
                 return (
                     <View key={key}>
                         <View key={key} style={styles.movieStyleView}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", movie = { val })}>
+                            <TouchableOpacity onPress={() => {
+                                this.props.navigation.navigate("Details", {movie: val})}}>
                                 <Image source={{ uri: val.coverUrl }} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>

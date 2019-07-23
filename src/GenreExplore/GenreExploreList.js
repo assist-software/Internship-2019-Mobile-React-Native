@@ -78,7 +78,7 @@ export default class GenreExploreList extends React.Component {
                     numColumns={2}
                     renderItem={({ item }) => (
                         <View style={styles.fList}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item})}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item: item.title})}>
                                 <Image style={styles.img} source={{uri: item.image}}></Image>
                             </TouchableOpacity>
                             <Text style={styles.titluFilme}>{item.title}</Text>

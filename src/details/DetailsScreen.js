@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
 import images from '../utils/imagesDetails';
-import getDataFromAPI, { moviesAPIUrl } from '../networking/network';
 import moment from 'moment';
-
 
 
 export default class DetailsScreen extends React.Component {
@@ -25,22 +23,6 @@ export default class DetailsScreen extends React.Component {
         }
     ]
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            dataS: null,
-        }
-    }
-
-    async componentDidMount() {
-        let movie = await getDataFromAPI(moviesAPIUrl)
-        this.setState({
-            dataS: movie,
-            isLoading: false,
-        })
-    }
-
     renderPictures() {
         let pics = [];
         for (let i = 0; i < this.apiImages.length; i++) {
@@ -55,57 +37,47 @@ export default class DetailsScreen extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return(
-            <View>
-                <ActivityIndicator />
-            </View>)
-        }
-        else {
-           // var timestamp = moment.unix(1563354097).format("DD-MM-YYYY");
-            let pics = this.renderPictures()
-            return (
-                <View style={{ backgroundColor: 'black', flex: 1 }}>
-                    <ScrollView>
-                        <View>
-                        <Image style={styles.imgLogo} source={{uri: this.state.dataS[1].coverUrl}} />
-                            <View style={styles.contentView}>
-                                <View style={{ flexDirection: 'row', flex: 1 }}>
-                                    <View><Text style={styles.title}>{this.state.dataS[1].title}</Text></View>
-                                    <View><Image style={styles.img2} source={images.imdb} /></View>
-                                    <Text style={styles.note}>{this.state.dataS[1].imdbScore}</Text>
-                                    <View><Image style={styles.star} source={images.star} /></View>
-                                </View>
-                                <Text style={styles.date}>{this.state.dataS[1].releaseDate}</Text>
-                                <Text style={styles.description}>{this.state.dataS[1].description}</Text>
-                                <Text style={styles.personal}>Director:</Text>
-                                <Text style={styles.name}>{this.state.dataS[1].director}</Text>
-                                <Text style={styles.personal}>Writers:</Text>
-                                <Text style={styles.name}>{this.state.dataS[1].writers}</Text>
-                                <Text style={styles.personal}>Actors:</Text>
-                                <Text style={styles.name}>{this.state.dataS[1].stars}</Text>
-                                <View style={styles.pictures}>{pics}</View>
+        const movie = this.props.navigation.getParam('movie');  // get movie param
+        //var timestamp = moment.unix(movie.realeaseDate).format("DD/MM/YYYY");   // conversion date unix format
+        let pics = this.renderPictures()
+        return (
+            <View style={{ backgroundColor: 'black', flex: 1 }}>
+                <ScrollView>
+                    <View>
+                        <Image style={styles.imgLogo} source={{ uri: movie.coverUrl }} />
+                        <View style={styles.contentView}>
+                            <View style={{ flexDirection: 'row', flex: 1 }}>
+                                <View><Text style={styles.title}>{movie.title}</Text></View>
+                                <View><Image style={styles.img2} source={imagesDetails.imdb} /></View>
+                                <Text style={styles.note}>{movie.imdbScore}</Text>
+                                <View><Image style={styles.star} source={imagesDetails.star} /></View>
                             </View>
-                            <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
-                                <Image style={styles.backImg} source={images.icon_back} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('MyProfile') }}>
-                                <Image style={styles.addImg} source={images.icon_add} />
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details') }}>
-
-                                <Image style={styles.playImg} source={images.play} />
-                            </TouchableOpacity>
-
+                            <Text style={styles.date}>{movie.releaseDate}</Text>
+                            <Text style={styles.description}>{movie.description}</Text>
+                            <Text style={styles.personal}>Director:</Text>
+                            <Text style={styles.name}>{movie.director}</Text>
+                            <Text style={styles.personal}>Writers:</Text>
+                            <Text style={styles.name}>{movie.writers}</Text>
+                            <Text style={styles.personal}>Actors:</Text>
+                            <Text style={styles.name}>{movie.stars}</Text>
+                            <View style={styles.pictures}>{pics}</View>
                         </View>
-                    </ScrollView>
-                </View>
-            );
-        }
+                        <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
+                            <Image style={styles.backImg} source={imagesDetails.icon_back} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('MyProfile') }}>
+                            <Image style={styles.addImg} source={imagesDetails.icon_add} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details', { youtube: movie.trailerUrl }) }}>
+                            <Image style={styles.playImg} source={imagesDetails.play} />
+                        </TouchableOpacity>
+
+                    </View>
+                </ScrollView>
+            </View>
+        );
     }
 }
-
 
 const styles = StyleSheet.create({
     playImg: {
@@ -200,7 +172,8 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         left: 16,
         textAlign: 'auto',
-        lineHeight: 27
+        lineHeight: 27,
+        marginTop: 24
     },
     name: {
         fontSize: 15,

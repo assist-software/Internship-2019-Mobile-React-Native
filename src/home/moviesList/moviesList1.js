@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import images from '../../utils/imagesHome';
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/networkHome';
+
 export default class moviesList1 extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +19,7 @@ export default class moviesList1 extends Component {
         })
     }
     render() {
+        
         if (this.state.isLoading) {
             return (
                 <View>
@@ -46,7 +48,8 @@ export default class moviesList1 extends Component {
                 return (
                     <View key={key}>
                         <View key={key} style={styles.movieStyleView}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", movie = { val })}>
+                            <TouchableOpacity onPress={() => {
+                                this.props.navigation.navigate("Details", {movie: val})}}>
                                 <Image source={{ uri: val.coverUrl }} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>

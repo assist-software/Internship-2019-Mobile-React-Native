@@ -4,13 +4,14 @@ import Video from 'react-native-video';
 import YouTube from 'react-native-youtube';
 
 export default class VideosScreen extends React.Component {
-  render() {
-    const { width } = Dimensions.get('window');
 
+  render() {
+    let movie = this.props.navigation.getParam('youtube');
+    videoId = movie.split("=");
     return (
-      <View style={{ backgroundColor: 'black', flex: 1, alignItems:'center',justifyContent:'center'}}>
+      <View style={{ backgroundColor: 'black', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <YouTube
-          videoId="Of52MNnXoxU" // youtube video key
+          videoId={videoId[1].toString()}
           play={true}
           fullscreen={false}
           loop={true}
@@ -21,10 +22,10 @@ export default class VideosScreen extends React.Component {
           onChangeQuality={e => this.setState({ quality: e.quality })}
           onError={e => this.setState({ error: e.error })}
 
-          style={{ alignSelf: 'stretch', height: 300}}
+          style={{ alignSelf: 'stretch', height: 300 }}
         />
         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
-          <Image style={styles.backImg} source={images.icon_back} />
+          <Image style={styles.backImg} source={imagesDetails.icon_back} />
         </TouchableOpacity>
       </View>
     );

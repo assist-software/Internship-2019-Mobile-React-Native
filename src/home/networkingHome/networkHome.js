@@ -1,4 +1,4 @@
-export const moviesAPIUrl = "http://www.json-generator.com/api/json/get/bVQozNJcOa?indent=2";
+export const moviesAPIUrl = "http://www.json-generator.com/api/json/get/cgbBXaLVTS?indent=2";
 
 export default async function getDataFromAPI(url) {
     return await fetch(url)

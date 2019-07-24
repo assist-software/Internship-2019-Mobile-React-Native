@@ -56,7 +56,7 @@ export default class SeeAll extends React.Component {
             numColumns={2}
             renderItem={({ item }) =>
               <View style={styles.fList}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', { item })}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {movie : item })}>
                   <Image style={styles.img} source={{ uri: item.coverUrl }}></Image>
                 </TouchableOpacity>
 

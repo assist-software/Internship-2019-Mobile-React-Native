@@ -18,7 +18,6 @@ const DrawerNavigatorHomeScreen = createDrawerNavigator(
     {
         HomeDrawer:
             { screen: HomeScreen },
-
     },
     {
         contentComponent: Sidebar,

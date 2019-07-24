@@ -1,6 +1,7 @@
 import React from 'react';
 import YouTube from 'react-native-youtube';
-import { View, StyleSheet, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import images from '../../utils/imagesHome'
 import { Dimensions } from 'react-native'
 
@@ -13,11 +14,22 @@ export default class VideosScreen extends React.Component {
   render() {
     videoId = this.youtube_parser(this.props.navigation.getParam("youtube"))
     return (
-
       <View style={{ flex: 1, backgroundColor: 'black' }}>
+        <View style={{  //Here is DrawerNavigator 
+          height: 48,
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          backgroundColor: '#F5044C'
+        }}>
+          <TouchableOpacity style={{ marginLeft: 12, }}
+            onPress={() => { this.props.navigation.goBack() }}>
+            <Icon name="ios-arrow-back" color={'white'} size={35} />
+          </TouchableOpacity>
+        </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <YouTube
-            videoId={videoId} 
+            videoId={videoId}
             play={true}
             fullscreen={false}
             loop={true}

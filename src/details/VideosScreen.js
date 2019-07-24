@@ -30,8 +30,8 @@ export default class VideosScreen extends React.Component {
           <Image style={styles.backImg} source={imagesDetails.icon_back} />
         </TouchableOpacity>
         <View style={styles.logoStyle}>
-            <Image source={images.moovie} style={styles.imageLogoStyle} />
-          </View>
+          <Image source={images.moovie} style={styles.imageLogoStyle} />
+        </View>
       </View>
 
     );
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   logoStyle:
   {
     height: 105,
-    borderTopWidth: 120,
+    marginTop: 220,
     justifyContent: 'center',
     alignItems: 'center',
 

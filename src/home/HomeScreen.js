@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import images from '../utils/imagesHome';
 import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
 import Rectangle from './rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
-import {DrawerActions} from 'react-native'
+import { DrawerActions } from 'react-native'
 export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {}
 
+  }
+
+  showNavigation() {
+    setTimeout(() => this.props.navigation.openDrawer(), 1000)
   }
 
   render() {
@@ -25,13 +29,13 @@ export default class HomeScreen extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-start',
               alignItems: 'center',
-              backgroundColor:'#F5044C'
+              backgroundColor: '#F5044C'
             }}>
-              <TouchableHighlight style={{ marginLeft: 12,  }}
-                onPress={() => { this.props.navigation.openDrawer() }}>
-                <Icon name="ios-menu"  color={'white'} size={35} />
-              </TouchableHighlight>
-            </View> 
+              <TouchableOpacity style={{ marginLeft: 12, }}
+                onPress={() => { this.showNavigation() }}>
+                <Icon name="ios-menu" color={'white'} size={35} />
+              </TouchableOpacity>
+            </View>
             <View style={styles.logoStyle}>
               <Image source={images.moovie} style={styles.imageLogoStyle} />
             </View>

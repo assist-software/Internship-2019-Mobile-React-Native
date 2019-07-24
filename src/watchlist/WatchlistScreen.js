@@ -2,20 +2,22 @@ import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import menuImages from '../utils/menuButtons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import getDataFromAPI, {WatchlistScreenAPI } from '../home/networkingHome/NetworkHome';
+import getDataFromAPI, {GenreExploreListAPI } from '../home/networkingHome/NetworkHome';
+import moment from 'moment';
+
 export default class WatchlistScreen extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       data : [],
-      dataAPI: [],
     };
   }
 
   async componentDidMount() {
-    const data = await getDataFromAPI(WatchlistScreenAPI);
+
+    const data = await getDataFromAPI(GenreExploreListAPI);
     this.setState({ data });
-    console.log(data)
   }
 
   render() {
@@ -31,11 +33,11 @@ export default class WatchlistScreen extends React.Component {
               numColumns={2}
               renderItem={({ item }) =>
                   <View style={styles.fList}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', { item })}>
-                      <Image style={styles.img} source={{uri: item.image}}/>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {movie : item})}>
+                      <Image style={styles.img} source={{uri: item.coverUrl}}/>
                     </TouchableOpacity>
                     <Text style={styles.movieTitle}>{item.title}</Text>
-                    <Text style={styles.movieDate}>{item.date}</Text>
+                    <Text style={styles.movieDate}>{moment.unix(item.releaseDate).format("DD/MM/YYYY")}</Text>
                   </View>
               } keyExtractor={(item, index) => index.toString()}
           />

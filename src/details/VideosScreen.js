@@ -9,23 +9,25 @@ export default class VideosScreen extends React.Component {
   render() {
     let movie = this.props.navigation.getParam('youtube');
     videoId = movie.split("=");
+    
     return (
-      <View style={{ backgroundColor: 'black', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <YouTube
-          videoId={videoId[1].toString()}
-          play={true}
-          fullscreen={false}
-          loop={true}
-          apiKey="AIzaSyDjn3zyTFnTUH_tqIalKwYHsjLzkf0Zwac" // don't change it       
+      <View style={{ flex: 1, backgroundColor: 'black' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <YouTube
+            videoId={videoId[1].toString()}
+            play={true}
+            fullscreen={false}
+            loop={true}
+            apiKey="AIzaSyDjn3zyTFnTUH_tqIalKwYHsjLzkf0Zwac" // don't change it       
 
-          onReady={e => this.setState({ isReady: true })}
-          onChangeState={e => this.setState({ status: e.state })}
-          onChangeQuality={e => this.setState({ quality: e.quality })}
-          onError={e => this.setState({ error: e.error })}
+            onReady={e => this.setState({ isReady: true })}
+            onChangeState={e => this.setState({ status: e.state })}
+            onChangeQuality={e => this.setState({ quality: e.quality })}
+            onError={e => this.setState({ error: e.error })}
 
-          style={{ alignSelf: 'stretch', height: 300 }}
-        />
-
+            style={{ alignSelf: 'stretch', height: 300 }}
+          />
+        </View>
         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
           <Image style={styles.backImg} source={imagesDetails.icon_back} />
         </TouchableOpacity>
@@ -49,7 +51,6 @@ const styles = StyleSheet.create({
     marginTop: 220,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   imageLogoStyle:
   {

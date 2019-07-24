@@ -36,7 +36,7 @@ export default class ExploreScreen extends React.Component {
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('navGenreExploreList', {item : item.name})}>
                                 <Image style={styles.img} source={images.rectangleBox}/>
                                 <Text style={styles.genre}>{item.name}</Text>
-                                <Text style={styles.nrMovies}>{item.movieNr}</Text>
+                                <Text style={styles.nrMovies}>{item.count}</Text>
                             </TouchableOpacity>
                         </View>
                     }keyExtractor={(item, index) => index.toString()}

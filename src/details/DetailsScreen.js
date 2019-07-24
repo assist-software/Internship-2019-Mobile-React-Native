@@ -63,7 +63,7 @@ export default class DetailsScreen extends React.Component {
                             <Text style={styles.name}>{movie.stars}</Text>
                             <View style={styles.pictures}>{pics}</View>
                         </View>
-                        <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
+                        <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
                             <Image style={styles.backImg} source={imagesDetails.icon_back} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('Watchlist', { movie: movie }) }}>
@@ -88,12 +88,13 @@ const styles = StyleSheet.create({
         marginHorizontal: '4%',
     },
     playImg: {
-        width: wp('23.2%'),
-        height: hp('14%')
+        width: 80,
+        height: 80
     },
     addBtn: {
         position: 'absolute',
         top: 30,
+        width: 25,
         right: 20
 
     },
@@ -105,7 +106,8 @@ const styles = StyleSheet.create({
     backBtn: {
         position: 'absolute',
         top: 30,
-        left: 16
+        left: 16,
+        width: 25
     },
     backImg: {
         width: 25,
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     },
     playBtn: {
         position: 'absolute',
-        top: Dimensions.get('window').width / 2 - 120,
+        top: Dimensions.get('window').width / 2 - 80,
         left: (Dimensions.get('window').width / 2) - 40
     },
     imgLogo: {
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         color: '#979797',
         left: '4%',
-        marginTop: '-7%'
+        marginTop: '-5%'
     },
     description: {
         fontSize: 15,

@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     backBtn: {
         position: 'absolute',
         top: 30,
+        width: 25,
         left: 16
     },
     backImg: {

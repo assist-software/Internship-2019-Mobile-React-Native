@@ -16,7 +16,7 @@ export default class VideosScreen extends React.Component {
           <YouTube
             videoId={videoId[1].toString()}
             play={true}
-            fullscreen={false}
+            fullscreen={true}
             loop={true}
             apiKey="AIzaSyDjn3zyTFnTUH_tqIalKwYHsjLzkf0Zwac" // don't change it       
 
@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
   backBtn: {
     position: 'absolute',
     top: 30,
-    left: 16
+    left: 16,
+    width: 25
   },
   logoStyle:
   {
     height: 105,
-    marginTop: 220,
     justifyContent: 'center',
     alignItems: 'center',
   },

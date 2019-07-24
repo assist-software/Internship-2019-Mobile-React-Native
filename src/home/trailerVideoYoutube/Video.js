@@ -31,7 +31,7 @@ export default class VideosScreen extends React.Component {
           <YouTube
             videoId={videoId}
             play={true}
-            fullscreen={false}
+            fullscreen={true}
             loop={true}
             apiKey="AIzaSyDauGqhDJw_ec8M1P5pOHikdVlcg5snCYc" // don't change it       
             onReady={e => this.setState({ isReady: true })}

@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         marginHorizontal:'4%',
     },
     playImg: {
-        width: wp('14%'),
+        width: wp('23.2%'),
         height: hp('14%')
     },
     addBtn: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     star: {
         width: 25,
         height: 25,
-        top:'7%'
+        top:'8%'
     },
     contentView: {
         flex: 1,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         top:'1%',
     },
     title: {
-        fontSize: 25,
+        fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
         flex:1,
@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         color: '#979797',
         left: '4%',
+        marginTop: '-7%'
     },
     description: {
         fontSize: 15,

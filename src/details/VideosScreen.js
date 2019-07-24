@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Button, StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 import YouTube from 'react-native-youtube';
+import images from '../utils/imagesHome';
 
 export default class VideosScreen extends React.Component {
 
@@ -24,10 +25,15 @@ export default class VideosScreen extends React.Component {
 
           style={{ alignSelf: 'stretch', height: 300 }}
         />
+
         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
           <Image style={styles.backImg} source={imagesDetails.icon_back} />
         </TouchableOpacity>
+        <View style={styles.logoStyle}>
+            <Image source={images.moovie} style={styles.imageLogoStyle} />
+          </View>
       </View>
+
     );
   }
 }
@@ -36,6 +42,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     left: 16
+  },
+  logoStyle:
+  {
+    height: 105,
+    borderTopWidth: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  imageLogoStyle:
+  {
+    resizeMode: 'contain',
+    height: Math.round(Dimensions.get('window').height) * 0.104 * 4.67,
+    width: Math.round(Dimensions.get('window').width) * 0.185 * 2.63,
   },
   backImg: {
     width: 25,

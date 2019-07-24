@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/NetworkHome';
+import moment from 'moment'
+
 export default class MoviesList1 extends Component {
 
     constructor(props) {
@@ -13,14 +15,17 @@ export default class MoviesList1 extends Component {
 
     async componentDidMount() {
         let objectApi = await getDataFromAPI(moviesAPIUrl);
+        const currentUnixTime = await Math.floor(Date.now()/1000);
         this.setState({
             isLoading: false,
-            dataSource: objectApi,
+            dataSource: objectApi.filter(mov => {
+                if (Math.floor(parseInt(mov.releaseDate)/1000) > currentUnixTime) return true;
+            }),
         })
     }
 
+
     render() {
-        
         if (this.state.isLoading) {
             return (
                 <View>
@@ -28,54 +33,7 @@ export default class MoviesList1 extends Component {
                 </View>
             )
         } else {
-            const dateCurrent = new Date().getDate(); //Current Date
-            const monthCurrent = new Date().getMonth() + 1; //Current Month, January == 0
-            const yearCurrent = new Date().getFullYear(); //Current Year
-            let structuredMovies = [];
-            let k = -1;
-            for (let i = 0; i < this.state.dataSource.length; i++) {
-                let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
-                let dd = dataISO.getDate();
-                let mm = dataISO.getMonth() + 1; 
-                let yyyy = dataISO.getFullYear();
-                if (yyyy > yearCurrent) {
-                    structuredMovies.push(this.state.dataSource[i]);
-                    k += 1;
-                    if (dd < 10) {
-                        dd = '0' + dd;
-                    }
-                    if (mm < 10) {
-                        mm = '0' + mm;
-                    }
-                    let today = dd + '/' + mm + '/' + yyyy;
-                    structuredMovies[k].releaseDate = today;
-                }
-                else if (mm > monthCurrent) {
-                    structuredMovies.push(this.state.dataSource[i]);
-                    k += 1;
-                    if (dd < 10) {
-                        dd = '0' + dd;
-                    }
-                    if (mm < 10) {
-                        mm = '0' + mm;
-                    }
-                    let today = dd + '/' + mm + '/' + yyyy;
-                    structuredMovies[k].releaseDate = today;
-                }
-                else if (dd > dateCurrent) {
-                    structuredMovies.push(this.state.dataSource[i]);
-                    k += 1;
-                    if (dd < 10) {
-                        dd = '0' + dd;
-                    }
-                    if (mm < 10) {
-                        mm = '0' + mm;
-                    }
-                    let today = dd + '/' + mm + '/' + yyyy;
-                    structuredMovies[k].releaseDate = today;
-                }
-            }
-            let movies = structuredMovies.filter(movie => {
+            let movies = this.state.dataSource.filter(movie => {
                 let index = movie.category.findIndex(category => {
                     return (category.name == this.props.category);
                 });
@@ -91,7 +49,7 @@ export default class MoviesList1 extends Component {
                         </View>
                         <View key={key} style={styles.movieDescriptionView}>
                             <Text style={styles.movieDescription1Style}>{val.title}</Text>
-                            <Text style={styles.movieDescription2Style}>{val.releaseDate}</Text>
+                            <Text style={styles.movieDescription2Style}>{moment.unix(Math.floor(parseInt(val.releaseDate) / 1000)).format("DD/MM/YYYY")}</Text>
                         </View>
                     </View>
                 )
@@ -112,9 +70,9 @@ const styles = StyleSheet.create(
         movieStyle:
         {
             borderRadius: 20,
-            width:144.8,
-            height:172,
-            overflow:'hidden',
+            width: 144.8,
+            height: 172,
+            overflow: 'hidden',
         },
         movieStyleView:
         {

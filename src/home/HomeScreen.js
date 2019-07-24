@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import images from '../utils/imagesHome';
 import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
 import Rectangle from '../home/rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
-
+import {DrawerActions} from 'react-native'
 export default class HomeScreen extends Component {
 
   constructor(props) {
@@ -19,6 +20,18 @@ export default class HomeScreen extends Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <View style={styles.container}>
+            <View style={{  //Here is DrawerNavigator 
+              height: 48,
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              backgroundColor:'#F5044C'
+            }}>
+              <TouchableHighlight style={{ marginLeft: 12,  }}
+                onPress={() => { this.props.navigation.openDrawer() }}>
+                <Icon name="ios-menu"  color={'white'} size={35} />
+              </TouchableHighlight>
+            </View> 
             <View style={styles.logoStyle}>
               <Image source={images.moovie} style={styles.imageLogoStyle} />
             </View>
@@ -48,7 +61,7 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <ComingNextButtons navigation={this.props.navigation} category={"Adventure"} />
+            <ComingNextButtons navigation={this.props.navigation} />
             <View style={styles.recentAddedViewStyle}>
               <View style={{ flex: 15 }}>
                 <Text style={styles.recentAddedTextStyle}>
@@ -64,7 +77,7 @@ export default class HomeScreen extends Component {
               </View>
               <View style={{ flex: 1 }}></View>
             </View>
-            <RecentAddedButtons navigation={this.props.navigation} category={"Adventure"} />
+            <RecentAddedButtons navigation={this.props.navigation} />
           </View>
         </ScrollView>
       </View>
@@ -89,6 +102,11 @@ const styles = StyleSheet.create(
       alignItems: 'center',
       marginTop: -(Math.round(Dimensions.get('window').height) / 18.285 * 2.811),
       marginBottom: -(Math.round(Dimensions.get('window').height) / 16.695 * 2.811),
+    },
+    drawerIconStyle:
+    {
+      height: 50,
+      width: 50,
     },
     imageLogoStyle:
     {

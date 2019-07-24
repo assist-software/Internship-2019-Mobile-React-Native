@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Dimensions } from "react-native";
-import MoviesList1 from '../moviesList/MoviesComingNext';
+import Movies from '../moviesList/MoviesComingNext';
 
 export default class Coming extends Component {
 
@@ -10,42 +10,19 @@ export default class Coming extends Component {
         this.state = {
             button1Style:
             {
-                alignItems: 'center',
-                backgroundColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width) / 4,
-                borderRadius: 30.8965,
-                marginRight: 5
+                backgroundColor: '#F5044C',  
             },
             button2Style:
             {
-                alignItems: 'center',
-                borderWidth: 0.636364,
                 borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width) / 4,
-                borderRadius: 30.8965,
-                marginRight: 5
             },
             button3Style:
             {
-                alignItems: 'center',
-                borderWidth: 0.636364,
                 borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width) / 4,
-                borderRadius: 30.8965,
-                marginRight: 5
             },
             button4Style:
             {
-                alignItems: 'center',
-                borderWidth: 0.636364,
                 borderColor: '#F5044C',
-                padding: 10,
-                width: Math.round(Dimensions.get('window').width) / 4,
-                borderRadius: 30.8965,
-                marginRight: 5
             },
             category: 'Adventure',
         }
@@ -56,42 +33,19 @@ export default class Coming extends Component {
             {
                 button1Style:
                 {
-                    alignItems: 'center',
                     backgroundColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button2Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button3Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button4Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 category: "Adventure",
             }
@@ -103,42 +57,19 @@ export default class Coming extends Component {
             {
                 button1Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button2Style:
                 {
-                    alignItems: 'center',
                     backgroundColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button3Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button4Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 category: "Comedy",
             }
@@ -149,42 +80,19 @@ export default class Coming extends Component {
             {
                 button1Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button2Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button3Style:
                 {
-                    alignItems: 'center',
                     backgroundColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button4Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 category: 'Drama',
             }
@@ -195,43 +103,19 @@ export default class Coming extends Component {
             {
                 button1Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button2Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button3Style:
                 {
-                    alignItems: 'center',
-                    borderWidth: 0.636364,
                     borderColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
                 },
                 button4Style:
                 {
-                    alignItems: 'center',
                     backgroundColor: '#F5044C',
-                    padding: 10,
-                    width: Math.round(Dimensions.get('window').width) / 4,
-                    borderRadius: 30.8965,
-                    marginRight: 5
-
                 },
                 category: 'Thriller'
             }
@@ -241,22 +125,22 @@ export default class Coming extends Component {
 
         let buttons1_5 = [];
         buttons1_5.push(<View key={1} >
-            <TouchableOpacity key={1} onPress={() => this._button1_pressed()} style={this.state.button1Style}>
+            <TouchableOpacity key={1} onPress={() => this._button1_pressed()} style={[this.state.button1Style,styles.buttonsTouchableStyle]}>
                 <Text style={styles.buttonTextStyle}>Adventure</Text>
             </TouchableOpacity>
         </View>);
         buttons1_5.push(<View key={2}>
-            <TouchableOpacity key={2} onPress={() => this._button2_pressed()} style={this.state.button2Style}>
+            <TouchableOpacity key={2} onPress={() => this._button2_pressed()} style={[this.state.button2Style,styles.buttonsTouchableStyle]}>
                 <Text style={styles.buttonTextStyle}>Comedy</Text>
             </TouchableOpacity>
         </View>);
         buttons1_5.push(<View key={3} >
-            <TouchableOpacity key={3} onPress={() => this._button3_pressed()} style={this.state.button3Style}>
+            <TouchableOpacity key={3} onPress={() => this._button3_pressed()} style={[this.state.button3Style,styles.buttonsTouchableStyle]}>
                 <Text style={styles.buttonTextStyle}>Drama</Text>
             </TouchableOpacity>
         </View>);
         buttons1_5.push(<View key={4} >
-            <TouchableOpacity key={4} onPress={() => this._button4_pressed()} style={this.state.button4Style}>
+            <TouchableOpacity key={4} onPress={() => this._button4_pressed()} style={[this.state.button4Style,styles.buttonsTouchableStyle]}>
                 <Text style={styles.buttonTextStyle}>Thriller</Text>
             </TouchableOpacity>
         </View>);
@@ -267,7 +151,7 @@ export default class Coming extends Component {
                         {buttons1_5}
                     </ScrollView>
                 </View>
-                <MoviesList1 navigation={this.props.navigation}  category={this.state.category}/>
+                <Movies navigation={this.props.navigation}  category={this.state.category}/>
             </View>
         );
     }
@@ -292,5 +176,15 @@ const styles = StyleSheet.create(
             flexWrap: 'nowrap',
             marginLeft: 16
         },
+        buttonsTouchableStyle:
+        {
+            alignItems: 'center',
+            alignItems: 'center',
+            padding: 10,
+            width: Math.round(Dimensions.get('window').width) / 4,
+            borderRadius: 30.8965,
+            marginRight: 5,
+            borderWidth: 0.636364,
+        }
     }
 )

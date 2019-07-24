@@ -2,9 +2,11 @@ import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import menuImages from '../../utils/menuButtons';
 import getDataFromAPI, { moviesAPIUrl } from '../networkingHome/NetworkHome';
+import moment from 'moment'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-export default class WatchlistScreen extends React.Component {
+
+export default class SeeAll extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,10 +17,23 @@ export default class WatchlistScreen extends React.Component {
 
   async componentDidMount() {
     let objectApi = await getDataFromAPI(moviesAPIUrl);
-    this.setState({
-      isLoading: false,
-      dataSource: objectApi,
-    })
+    const currentUnixTime = Math.floor(Date.now()/1000);
+    if (this.props.navigation.getParam('title') === "Coming Next")
+      this.setState({
+        isLoading: false,
+        dataSource: objectApi.filter(mov => {
+          if (Math.floor(parseInt(mov.releaseDate)/1000) > currentUnixTime) return true;
+        }),
+      })
+      if (this.props.navigation.getParam('title') === "Recent Added")
+      this.setState({
+        isLoading: false,
+        dataSource: objectApi.filter(mov => {
+          if (Math.floor(parseInt(mov.releaseDate)/1000) <= currentUnixTime) return true;
+        }),
+      })
+    
+
   }
 
 
@@ -30,106 +45,14 @@ export default class WatchlistScreen extends React.Component {
         </View>
       )
     else {
-      let title = this.props.navigation.getParam('title');
-      const dateCurrent = new Date().getDate(); //Current Date
-      const monthCurrent = new Date().getMonth() + 1; //Current Month
-      const yearCurrent = new Date().getFullYear(); //Current Year
-      let structuredMovies = [];
-      let k = -1;
-      if (title === "Coming Next")
-        for (let i = 0; i < this.state.dataSource.length; i++) {
-          let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
-          let dd = dataISO.getDate();
-          let mm = dataISO.getMonth() + 1; //January is 0!
-          let yyyy = dataISO.getFullYear();
-          if (yyyy > yearCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[k].releaseDate = today;
-          }
-          else if (mm > monthCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[k].releaseDate = today;
-          }
-          else if (dd > dateCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[k].releaseDate = today;
-          }
-        }
-      else if (title === "Recent Added")
-        for (let i = 0; i < this.state.dataSource.length; i++) {
-          let dataISO = new Date(parseInt(this.state.dataSource[i].releaseDate));
-          let dd = dataISO.getDate();
-          let mm = dataISO.getMonth() + 1; //January is 0!
-          let yyyy = dataISO.getFullYear();
-          if (yyyy <= yearCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[i].releaseDate = today;
-          }
-          else if (mm <= monthCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[i].releaseDate = today;
-          }
-          else if (dd <= dateCurrent) {
-            structuredMovies.push(this.state.dataSource[i]);
-            k += 1;
-            if (dd < 10) {
-              dd = '0' + dd;
-            }
-            if (mm < 10) {
-              mm = '0' + mm;
-            }
-            let today = dd + '/' + mm + '/' + yyyy;
-            structuredMovies[i].releaseDate = today;
-          }
-        }
       return (
         <View style={styles.container}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{this.props.navigation.getParam('title')}</Text>
           <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
             <Image style={styles.backIMG} source={menuImages.back} />
           </TouchableOpacity>
           <FlatList
-            data={structuredMovies}
+            data={this.state.dataSource}
             numColumns={2}
             renderItem={({ item }) =>
               <View style={styles.fList}>
@@ -138,7 +61,7 @@ export default class WatchlistScreen extends React.Component {
                 </TouchableOpacity>
 
                 <Text style={styles.titluFilme}>{item.title}</Text>
-                <Text style={styles.dataFilme}>{item.releaseDate}</Text>
+                <Text style={styles.dataFilme}>{moment.unix(Math.floor(parseInt(item.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
               </View>
             } keyExtractor={(item, index) => index.toString()}
           />
@@ -186,12 +109,12 @@ const styles = StyleSheet.create({
 
   },
   fList: {
-    flex:1,
+    flex: 1,
     marginHorizontal: 4,
     marginVertical: 10,
   },
   titluFilme: {
-    marginLeft:4,
+    marginLeft: 4,
     marginRight: 3,
     fontSize: 23,
     color: 'white',
@@ -202,7 +125,7 @@ const styles = StyleSheet.create({
     marginRight: 3,
     fontSize: 15,
     color: 'grey',
-    marginLeft:4,
+    marginLeft: 4,
 
   }
 });

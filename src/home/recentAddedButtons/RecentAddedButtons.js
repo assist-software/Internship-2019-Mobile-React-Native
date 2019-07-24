@@ -1,98 +1,50 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Dimensions } from 'react-native'
-import MoviesList2 from '../moviesList/MoviesRecentAdded';
+import Movies from '../moviesList/MoviesRecentAdded';
 export default class RecentAdded extends Component {
   constructor() {
     super();
     this.state = {
       button5Style:
       {
-        alignItems: 'center',
         backgroundColor: '#F5044C',
-        padding: 10,
-        width: Math.round(Dimensions.get('window').width) / 4,
-        borderRadius: 30.8965,
-        marginRight: 5
       },
       button6Style:
       {
-        alignItems: 'center',
-        borderWidth: 0.636364,
         borderColor: '#F5044C',
-        padding: 10,
-        width: Math.round(Dimensions.get('window').width) / 4,
-        borderRadius: 30.8965,
-        marginRight: 5
       },
-      button7Style:
+      button7tyle:
       {
-        alignItems: 'center',
-        borderWidth: 0.636364,
         borderColor: '#F5044C',
-        padding: 10,
-        width: Math.round(Dimensions.get('window').width) / 4,
-        borderRadius: 30.8965,
-        marginRight: 5
       },
       button8Style:
       {
-        alignItems: 'center',
-        borderWidth: 0.636364,
         borderColor: '#F5044C',
-        padding: 10,
-        width: Math.round(Dimensions.get('window').width) / 4,
-        borderRadius: 30.8965,
-        marginRight: 5
       },
-      category:'Adventure'
-
-    };
-
+      category: 'Adventure',
+    }
   }
   _button5_pressed() {
     this.setState(
       {
         button5Style:
         {
-          alignItems: 'center',
           backgroundColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button6Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button7Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button8Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
-        category:'Adventure'
+        category: 'Adventure'
       }
     )
   }
@@ -101,44 +53,21 @@ export default class RecentAdded extends Component {
       {
         button5Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button6Style:
         {
-          alignItems: 'center',
           backgroundColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button7Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button8Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
-        category:'Comedy'
+        category: 'Comedy'
       }
     )
   }
@@ -147,44 +76,21 @@ export default class RecentAdded extends Component {
       {
         button5Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button6Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button7Style:
         {
-          alignItems: 'center',
           backgroundColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button8Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
-        category:'Drama'
+        category: 'Drama'
       }
     )
   }
@@ -193,45 +99,21 @@ export default class RecentAdded extends Component {
       {
         button5Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button6Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button7Style:
         {
-          alignItems: 'center',
-          borderWidth: 0.636364,
           borderColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
         },
         button8Style:
         {
-          alignItems: 'center',
           backgroundColor: '#F5044C',
-          padding: 10,
-          width: Math.round(Dimensions.get('window').width) / 4,
-          borderRadius: 30.8965,
-          marginRight: 5
-
         },
-        category:'Thriller'
+        category: 'Thriller'
       }
     )
   }
@@ -239,22 +121,22 @@ export default class RecentAdded extends Component {
 
     let buttons5_9 = [];
     buttons5_9.push(<View key={5} >
-      <TouchableOpacity key={5} onPress={() => this._button5_pressed()} style={this.state.button5Style}>
+      <TouchableOpacity key={5} onPress={() => this._button5_pressed()} style={[this.state.button5Style, styles.buttonsTouchableStyle]}>
         <Text style={styles.buttonTextStyle} >Adventure</Text>
       </TouchableOpacity>
     </View>)
     buttons5_9.push(<View key={6} >
-      <TouchableOpacity key={6} onPress={() => this._button6_pressed()} style={this.state.button6Style}>
+      <TouchableOpacity key={6} onPress={() => this._button6_pressed()} style={[this.state.button6Style, styles.buttonsTouchableStyle]}>
         <Text style={styles.buttonTextStyle}>Comedy</Text>
       </TouchableOpacity>
     </View>)
     buttons5_9.push(<View key={7} >
-      <TouchableOpacity key={7} onPress={() => this._button7_pressed()} style={this.state.button7Style}>
+      <TouchableOpacity key={7} onPress={() => this._button7_pressed()} style={[this.state.button7tyle , styles.buttonsTouchableStyle]}>
         <Text style={styles.buttonTextStyle}>Drama</Text>
       </TouchableOpacity>
     </View>)
     buttons5_9.push(<View key={8} >
-      <TouchableOpacity key={8} onPress={() => this._button8_pressed()} style={this.state.button8Style}>
+      <TouchableOpacity key={8} onPress={() => this._button8_pressed()} style={[this.state.button8Style, styles.buttonsTouchableStyle]}>
         <Text style={styles.buttonTextStyle}>Thriller</Text>
       </TouchableOpacity>
     </View>)
@@ -265,7 +147,7 @@ export default class RecentAdded extends Component {
             {buttons5_9}
           </ScrollView>
         </View>
-        <MoviesList2 navigation={this.props.navigation} category={this.state.category}/>
+        <Movies navigation={this.props.navigation} category={this.state.category} />
       </View>
 
     );
@@ -291,5 +173,15 @@ const styles = StyleSheet.create(
       flexWrap: 'nowrap',
       marginLeft: 16
     },
+    buttonsTouchableStyle:
+    {
+      alignItems: 'center',
+      alignItems: 'center',
+      padding: 10,
+      width: Math.round(Dimensions.get('window').width) / 4,
+      borderRadius: 30.8965,
+      marginRight: 5,
+      borderWidth: 0.636364,
+    }
   }
 )

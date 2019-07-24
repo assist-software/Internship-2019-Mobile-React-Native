@@ -1,10 +1,10 @@
 import { createBottomTabNavigator, createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './home/HomeScreen';
 import WatchlistScreen from './watchlist/WatchlistScreen';
 import ExploreScreen from './explore/ExploreScreen';
 import React from 'react';
 import DetailsScreen from "./details/DetailsScreen";
-import Icon from 'react-native-vector-icons/Ionicons';
 import FullImageScreen from "./details/FullImageScreen";
 import VideosScreen from "./details/VideosScreen";
 import GenreExploreList from "./GenreExplore/GenreExploreList";

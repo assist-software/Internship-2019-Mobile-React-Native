@@ -49,7 +49,7 @@ export default class GenreExploreList extends React.Component {
 
     searchFilterFunction = text => {
         if(!text) {
-            this.setState({ data: this.originalData });
+            this.setState({ dataBASE: this.originalData });
             return
         }
 
@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginTop:45,
         marginLeft:12,
-        width: wp('4%'),
-        height: hp('4%'),
+        width: wp('8%'),
+        height: hp('6%'),
     },
     title: {
         fontSize: 23,

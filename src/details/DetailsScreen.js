@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Button, Image, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
 import images from '../utils/imagesDetails';
 import moment from 'moment';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 export default class DetailsScreen extends React.Component {
@@ -45,15 +45,15 @@ export default class DetailsScreen extends React.Component {
             <View style={{ backgroundColor: 'black', flex: 1 }}>
                 <ScrollView>
                     <View>
-                        <Image style={styles.imgLogo} source={{ uri: movie.coverUrl }} />
+                            <Image style={styles.imgLogo} source={{ uri: movie.coverUrl }} blurRadius={0}/>
                         <View style={styles.contentView}>
                             <View style={styles.header}>
                                 <Text style={styles.title}>{movie.title}</Text>
                                 <Image style={styles.imdbicon} source={imagesDetails.imdb} />
                                 <Text style={styles.note}>{movie.imdbScore}</Text>
-                               <Image style={styles.star} source={imagesDetails.star} />
+                                <Image style={styles.star} source={imagesDetails.star} />
                             </View>
-                            <Text style={styles.date}>{moment.unix(Math.floor(parseInt(movie.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
+                            <Text style={styles.date}>{moment.unix(Math.floor(parseInt(movie.releaseDate) / 1000)).format("DD/MM/YYYY")}</Text>
                             <Text style={styles.description}>{movie.description}</Text>
                             <Text style={styles.personal}>Director:</Text>
                             <Text style={styles.name}>{movie.director}</Text>
@@ -66,7 +66,7 @@ export default class DetailsScreen extends React.Component {
                         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
                             <Image style={styles.backImg} source={imagesDetails.icon_back} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('Watchlist', {movie : movie} )}}>
+                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('Watchlist', { movie: movie }) }}>
                             <Image style={styles.addImg} source={imagesDetails.icon_add} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details', { youtube: movie.trailerUrl }) }}>
@@ -83,9 +83,9 @@ export default class DetailsScreen extends React.Component {
 const styles = StyleSheet.create({
     header:
     {
-        flex:1,
-        flexDirection:'row',
-        marginHorizontal:'4%',
+        flex: 1,
+        flexDirection: 'row',
+        marginHorizontal: '4%',
     },
     playImg: {
         width: wp('23.2%'),
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     star: {
         width: 25,
         height: 25,
-        top:'8%'
+        top: '8%'
     },
     contentView: {
         flex: 1,
@@ -143,22 +143,22 @@ const styles = StyleSheet.create({
     imdbicon: {
         width: wp('12%'),
         height: hp('12%'),
-        left:'-14%',
-        top:'1%',
+        left: '-14%',
+        top: '1%',
     },
     title: {
-        fontSize: 20,
+        fontSize: 17,
         color: 'white',
         fontWeight: 'bold',
-        flex:1,
-        textAlignVertical:'center',
-        marginRight:'2%',
+        flex: 1,
+        textAlignVertical: 'center',
+        marginRight: '2%',
     },
     note: {
         fontSize: 20,
         color: '#979797',
-        textAlignVertical:'center',
-        left:'-6%'
+        textAlignVertical: 'center',
+        left: '-6%'
     },
     personal: {
         fontSize: 14,

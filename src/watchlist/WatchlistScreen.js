@@ -37,7 +37,7 @@ export default class WatchlistScreen extends React.Component {
                       <Image style={styles.img} source={{uri: item.coverUrl}}/>
                     </TouchableOpacity>
                     <Text style={styles.movieTitle}>{item.title}</Text>
-                    <Text style={styles.movieDate}>{moment.unix(item.releaseDate).format("DD/MM/YYYY")}</Text>
+                    <Text style={styles.movieDate}>{moment.unix(Math.floor(parseInt(item.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
                   </View>
               } keyExtractor={(item, index) => index.toString()}
           />

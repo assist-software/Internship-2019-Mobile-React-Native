@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableOpacity, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import images from '../utils/imagesHome';
 import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
@@ -7,12 +7,17 @@ import Rectangle from './rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
 import { DrawerActions } from 'react-native'
+import {NavigationActions} from 'react-navigation'
 export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
-
+    this.state = {
+      navigationOptions: ({ navigation }) => ({
+        headerLeft : <MenuButton navigate={navigation.navigate} />,
+      }),
+    }
+    
   }
 
   showNavigation() {
@@ -24,6 +29,18 @@ export default class HomeScreen extends Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <View style={styles.container}>
+            <View style={{  //Here is DrawerNavigator 
+              height: 48,
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              backgroundColor: '#F5044C'
+            }}>
+              <TouchableOpacity style={{ marginLeft: 12, }}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <Icon name="ios-menu" color={'white'} size={50} />
+              </TouchableOpacity>
+            </View>
             <View style={styles.logoStyle}>
               <Image source={images.moovie} style={styles.imageLogoStyle} />
             </View>
@@ -34,7 +51,7 @@ export default class HomeScreen extends Component {
             </View>
             <View style={styles.phraseStyleView}>
               <Text style={styles.phraseStyleText}>
-                Keep up to date about what movies will be realesed in the next couple of months.
+                Keep up to date about what movies will be relesed in the next couple of months.
                 </Text>
             </View>
             <Rectangle navigation={this.props.navigation} />

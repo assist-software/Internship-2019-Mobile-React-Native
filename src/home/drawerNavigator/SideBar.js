@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, TextInput, ImageBackground, Dimensions, Image, TouchableOpacity } from 'react-native';
 import images from '../../utils/imagesSidebar';
-import TextInputs from '../drawerNavigator/Textinputs'
+import TextInputs from './Textinputs'
 
 export default class SideBar extends Component {
   constructor(props) {

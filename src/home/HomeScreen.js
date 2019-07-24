@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, TouchableHighlight, TouchableOpacity } from 'react-native';
 import images from '../utils/imagesHome';
 import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
-import Rectangle from '../home/rectangle/Rectangle';
+import Rectangle from './rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
 

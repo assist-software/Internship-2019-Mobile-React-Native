@@ -24,18 +24,6 @@ export default class HomeScreen extends Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <View style={styles.container}>
-            <View style={{  //Here is DrawerNavigator 
-              height: 48,
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              backgroundColor: '#F5044C'
-            }}>
-              <TouchableOpacity style={{ marginLeft: 12, }}
-                onPress={() => { this.showNavigation() }}>
-                <Icon name="ios-menu" color={'white'} size={35} />
-              </TouchableOpacity>
-            </View>
             <View style={styles.logoStyle}>
               <Image source={images.moovie} style={styles.imageLogoStyle} />
             </View>

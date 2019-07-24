@@ -53,7 +53,7 @@ export default class DetailsScreen extends React.Component {
                                 <Text style={styles.note}>{movie.imdbScore}</Text>
                                <Image style={styles.star} source={imagesDetails.star} />
                             </View>
-                            <Text style={styles.date}>{movie.releaseDate}</Text>
+                            <Text style={styles.date}>{moment.unix(Math.floor(parseInt(movie.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
                             <Text style={styles.description}>{movie.description}</Text>
                             <Text style={styles.personal}>Director:</Text>
                             <Text style={styles.name}>{movie.director}</Text>
@@ -66,7 +66,7 @@ export default class DetailsScreen extends React.Component {
                         <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Home') }}>
                             <Image style={styles.backImg} source={imagesDetails.icon_back} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('MyProfile') }}>
+                        <TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('Watchlist', {movie : movie} )}}>
                             <Image style={styles.addImg} source={imagesDetails.icon_add} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.playBtn} onPress={() => { this.props.navigation.navigate('Trailer_Details', { youtube: movie.trailerUrl }) }}>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         marginHorizontal:'4%',
     },
     playImg: {
-        width: wp('14%'),
+        width: wp('23.2%'),
         height: hp('14%')
     },
     addBtn: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     star: {
         width: 25,
         height: 25,
-        top:'7%'
+        top:'8%'
     },
     contentView: {
         flex: 1,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         top:'1%',
     },
     title: {
-        fontSize: 25,
+        fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
         flex:1,
@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         color: '#979797',
         left: '4%',
+        marginTop: '-7%'
     },
     description: {
         fontSize: 15,

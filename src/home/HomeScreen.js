@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, ScrollView, Image, ImageBackground, Tou
 import Icon from 'react-native-vector-icons/Ionicons';
 import images from '../utils/imagesHome';
 import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
-import Rectangle from '../home/rectangle/Rectangle';
+import Rectangle from './rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
 import {DrawerActions} from 'react-native'

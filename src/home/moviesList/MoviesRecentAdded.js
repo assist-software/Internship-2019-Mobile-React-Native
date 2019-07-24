@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/NetworkHome';
 import moment from 'moment'
+
 export default class MoviesList2 extends Component {
 
     constructor(props) {

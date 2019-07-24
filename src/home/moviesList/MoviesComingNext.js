@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIn
 import getDataFromAPI, { moviesAPIUrl } from '../../home/networkingHome/NetworkHome';
 import moment from 'moment'
 
+
 export default class MoviesList1 extends Component {
 
     constructor(props) {

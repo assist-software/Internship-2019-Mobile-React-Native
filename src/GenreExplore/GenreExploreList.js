@@ -2,18 +2,18 @@ import React from 'react';
 import {  Text, View, FlatList, StyleSheet, TouchableOpacity, Image,TextInput} from 'react-native';
 import menuImages from '../utils/menuButtons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {Keyboard} from 'react-native'
+import {Keyboard} from 'react-native';
+import moment from 'moment';
 import getDataFromAPI, { GenreExploreListAPI } from '../home/networkingHome/NetworkHome';
 
 export default class GenreExploreList extends React.Component {
 
     title = this.props.navigation.getParam('item');
     originalData = [];
-
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            dataBASE: [],
             error: null,
             text: "",
             loading: false,
@@ -23,13 +23,14 @@ export default class GenreExploreList extends React.Component {
 
     async componentDidMount() {
         const apiData = await getDataFromAPI(GenreExploreListAPI);
-        const data = apiData.filter(item => {
-            let string = item.genre;
-            if(string.includes(this.title))
-                return item.genre ;
+        const dataBASE = apiData.filter(item => {
+            return Array.from(item.category)
+                .map(e => e.name)
+                .includes(this.title)
         });
-        this.originalData = data;
-        this.setState({ data });
+
+        this.originalData = dataBASE;
+        this.setState({ dataBASE });
     }
 
     renderHeader = () => {
@@ -52,36 +53,33 @@ export default class GenreExploreList extends React.Component {
             return
         }
 
-        const newData = this.state.data.filter(item => {
+        const newData = this.state.dataBASE.filter(item => {
             const itemData = `${item.title.toUpperCase()}`;
             const textData = text.toUpperCase();
             return itemData.indexOf(textData) !== -1;
         });
-        this.setState({ data: newData });
+        this.setState({ dataBASE: newData });
     };
 
     render() {
-
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>{this.title}</Text>
-                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.navigate('Explore') }}>
+                <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
                     <Image style={styles.backIMG} source={menuImages.back} />
                 </TouchableOpacity>
 
                 <FlatList
                     onScroll={() => {Keyboard.dismiss()}}
-                    data={this.state.data}
+                    data={this.state.dataBASE}
                     numColumns={2}
                     renderItem={({ item }) => (
                         <View style={styles.fList}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {item: item.title})}>
-
-                                <Image style={styles.img} source={{uri: item.image}}/>
-
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {movie : item})}>
+                                <Image style={styles.img} source={{uri: item.coverUrl}}/>
                             </TouchableOpacity>
                             <Text style={styles.movieTitle}>{item.title}</Text>
-                            <Text style={styles.movieDate}>{item.date}</Text>
+                            <Text style={styles.movieDate}>{moment.unix(Math.floor(parseInt(item.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
                         </View>
                     )}
                     keyExtractor={item => item.title}

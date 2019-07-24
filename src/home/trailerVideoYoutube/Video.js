@@ -24,7 +24,7 @@ export default class VideosScreen extends React.Component {
         }}>
           <TouchableOpacity style={{ marginLeft: 12, }}
             onPress={() => { this.props.navigation.goBack() }}>
-            <Icon name="ios-arrow-back" color={'white'} size={35} />
+            <Icon name="ios-arrow-back" color={'white'} size={45} />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

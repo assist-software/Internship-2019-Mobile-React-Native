@@ -17,7 +17,8 @@ import Sidebar from '../src/home//drawerNavigator/SideBar';
 const DrawerNavigatorHomeScreen = createDrawerNavigator(
     {
         HomeDrawer:
-            { screen: HomeScreen },
+            { screen: HomeScreen,
+             },
     },
     {
         contentComponent: Sidebar,

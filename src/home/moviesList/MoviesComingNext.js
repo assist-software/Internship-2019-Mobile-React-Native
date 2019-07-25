@@ -54,12 +54,12 @@ export default class MoviesList1 extends Component {
             ).sort(this.compare).map((val, key) => {
                 return (
                     <View key={key}>
-                        <View key={key} style={styles.movieStyleView}>
+                        <View style={styles.movieStyleView}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Details", { movie: val })}>
                                 <Image source={{ uri: val.coverUrl }} style={styles.movieStyle} />
                             </TouchableOpacity>
                         </View>
-                        <View key={key} style={styles.movieDescriptionView}>
+                        <View  style={styles.movieDescriptionView}>
                             <Text style={styles.movieDescription1Style}>{val.title}</Text>
                             <Text style={styles.movieDescription2Style}>{moment.unix(Math.floor(parseInt(val.releaseDate) / 1000)).format("DD/MM/YYYY")}</Text>
                         </View>

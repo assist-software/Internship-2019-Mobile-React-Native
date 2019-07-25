@@ -10,79 +10,59 @@ export default class Coming extends Component {
     constructor() {
         super();
         this.state = {
-            buttonOnStyle:
-            {
-                backgroundColor: '#F5044C',
-            },
-            buttonOffStyle:
-            {
-                borderColor: '#F5044C',
-            },
             category: 'Action',
-            dataSource: null,
+            dataSource: [],
             isLoading: true,
+            activeButton: 0
         }
     }
-
     
-    buttons1_5 = [];
+    categoriesButtons = [];
 
     async componentDidMount() {
-        let objectApi = await getDataFromAPI(ExploreScreenAPI);
+        let allCategories = await getDataFromAPI(ExploreScreenAPI);
         this.setState({
             isLoading: false,
-            dataSource: objectApi,
+            dataSource: allCategories,
         })        
     }
     
     _buttonpressed(i) {
-        this.buttons1_5 = [];
+        this.categoriesButtons = [];
         this.setState({
-            category:this.state.dataSource[i].name,
+            category: this.state.dataSource[i].name,
+            activeButton: i
         })
-        for (let j = 0; j < this.buttons1_5.length; j++) {
-            this.buttons1_5.push(<View key={j} >
-                <TouchableOpacity key={j} onPress={() => this._buttonpressed(j)} style={[this.state.buttonOffStyle, styles.buttonsTouchableStyle]}>
-                    <Text style={styles.buttonTextStyle}>{this.state.dataSource[j].name}</Text>
+    }
+
+    renderCategoriesButton() {
+        
+        for (let i = 0; i < this.state.dataSource.length; i++) {
+          this.categoriesButtons.push(
+            <View key={i} >
+                <TouchableOpacity onPress={() => this._buttonpressed(i)} style={[ styles.buttonsTouchableStyle, 
+                    i == this.state.activeButton ? styles.buttonOnStyle : styles.buttonOffStyle]}>
+                    <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
                 </TouchableOpacity>
             </View >);
         }
-        this.buttons1_5[i] = <View key={i} >
-            <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOnStyle, styles.buttonsTouchableStyle]}>
-                <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
-            </TouchableOpacity>
-        </View >;
-        
-
     }
+
     render() {
 
-        if (this.state.isLoading) {
-            
+        if (this.state.isLoading) {    
             return (
                 <View>
                     <ActivityIndicator />
-                </View>
-            )
+                </View>)
         }
         else {
-            for (let i = 0; i < this.state.dataSource.length; i++) {
-                if (i == 0) this.buttons1_5.push(<View key={i} >
-                    <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOnStyle, styles.buttonsTouchableStyle]}>
-                        <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
-                    </TouchableOpacity>
-                </View >);
-                else this.buttons1_5.push(<View key={i} >
-                    <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOffStyle, styles.buttonsTouchableStyle]}>
-                        <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
-                    </TouchableOpacity>
-                </View >);
-            }
+            this.renderCategoriesButton()
             return (
                 <View>
                     <View style={styles.comingNextButtonsView}>
                         <ScrollView horizontal='true'>
-                            {this.buttons1_5}
+                            {this.categoriesButtons}
                         </ScrollView>
                     </View>
                     <Movies navigation={this.props.navigation} category={this.state.category} />
@@ -120,6 +100,12 @@ const styles = StyleSheet.create(
             borderRadius: 30.8965,
             marginRight: 5,
             borderWidth: 0.636364,
-        }
+        },
+        buttonOnStyle:{
+            backgroundColor: '#F5044C',
+        },
+        buttonOffStyle:{
+            borderColor: '#F5044C',
+        },
     }
 )

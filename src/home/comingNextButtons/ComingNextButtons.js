@@ -1,159 +1,94 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Dimensions } from "react-native";
 import Movies from '../moviesList/MoviesComingNext';
+import getDataFromAPI, { ExploreScreenAPI } from '../../home/networkingHome/NetworkHome';
+
 
 export default class Coming extends Component {
 
     constructor() {
         super();
         this.state = {
-            button1Style:
+            buttonOnStyle:
             {
-                backgroundColor: '#F5044C',  
+                backgroundColor: '#F5044C',
             },
-            button2Style:
-            {
-                borderColor: '#F5044C',
-            },
-            button3Style:
+            buttonOffStyle:
             {
                 borderColor: '#F5044C',
             },
-            button4Style:
-            {
-                borderColor: '#F5044C',
-            },
-            category: 'Adventure',
+            category: 'Action',
+            dataSource: null,
+            isLoading: true,
         }
     }
 
-    _button1_pressed() {
-        this.setState(
-            {
-                button1Style:
-                {
-                    backgroundColor: '#F5044C',
-                },
-                button2Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button3Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button4Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                category: "Adventure",
-            }
-        )
+    
+    buttons1_5 = [];
 
+    async componentDidMount() {
+        let objectApi = await getDataFromAPI(ExploreScreenAPI);
+        this.setState({
+            isLoading: false,
+            dataSource: objectApi,
+        })        
     }
-    _button2_pressed() {
-        this.setState(
-            {
-                button1Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button2Style:
-                {
-                    backgroundColor: '#F5044C',
-                },
-                button3Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button4Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                category: "Comedy",
-            }
-        )
-    }
-    _button3_pressed() {
-        this.setState(
-            {
-                button1Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button2Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button3Style:
-                {
-                    backgroundColor: '#F5044C',
-                },
-                button4Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                category: 'Drama',
-            }
-        )
-    }
-    _button4_pressed() {
-        this.setState(
-            {
-                button1Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button2Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button3Style:
-                {
-                    borderColor: '#F5044C',
-                },
-                button4Style:
-                {
-                    backgroundColor: '#F5044C',
-                },
-                category: 'Thriller'
-            }
-        )
+    
+    _buttonpressed(i) {
+        this.buttons1_5 = [];
+        this.setState({
+            category:this.state.dataSource[i].name,
+        })
+        for (let j = 0; j < this.buttons1_5.length; j++) {
+            this.buttons1_5.push(<View key={j} >
+                <TouchableOpacity key={j} onPress={() => this._buttonpressed(j)} style={[this.state.buttonOffStyle, styles.buttonsTouchableStyle]}>
+                    <Text style={styles.buttonTextStyle}>{this.state.dataSource[j].name}</Text>
+                </TouchableOpacity>
+            </View >);
+        }
+        this.buttons1_5[i] = <View key={i} >
+            <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOnStyle, styles.buttonsTouchableStyle]}>
+                <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
+            </TouchableOpacity>
+        </View >;
+        
+
     }
     render() {
 
-        let buttons1_5 = [];
-        buttons1_5.push(<View key={1} >
-            <TouchableOpacity key={1} onPress={() => this._button1_pressed()} style={[this.state.button1Style,styles.buttonsTouchableStyle]}>
-                <Text style={styles.buttonTextStyle}>Adventure</Text>
-            </TouchableOpacity>
-        </View>);
-        buttons1_5.push(<View key={2}>
-            <TouchableOpacity key={2} onPress={() => this._button2_pressed()} style={[this.state.button2Style,styles.buttonsTouchableStyle]}>
-                <Text style={styles.buttonTextStyle}>Comedy</Text>
-            </TouchableOpacity>
-        </View>);
-        buttons1_5.push(<View key={3} >
-            <TouchableOpacity key={3} onPress={() => this._button3_pressed()} style={[this.state.button3Style,styles.buttonsTouchableStyle]}>
-                <Text style={styles.buttonTextStyle}>Drama</Text>
-            </TouchableOpacity>
-        </View>);
-        buttons1_5.push(<View key={4} >
-            <TouchableOpacity key={4} onPress={() => this._button4_pressed()} style={[this.state.button4Style,styles.buttonsTouchableStyle]}>
-                <Text style={styles.buttonTextStyle}>Thriller</Text>
-            </TouchableOpacity>
-        </View>);
-        return (
-            <View>
-                <View style={styles.comingNextButtonsView}>
-                    <ScrollView horizontal='true'>
-                        {buttons1_5}
-                    </ScrollView>
+        if (this.state.isLoading) {
+            
+            return (
+                <View>
+                    <ActivityIndicator />
                 </View>
-                <Movies navigation={this.props.navigation}  category={this.state.category}/>
-            </View>
-        );
+            )
+        }
+        else {
+            for (let i = 0; i < this.state.dataSource.length; i++) {
+                if (i == 0) this.buttons1_5.push(<View key={i} >
+                    <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOnStyle, styles.buttonsTouchableStyle]}>
+                        <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
+                    </TouchableOpacity>
+                </View >);
+                else this.buttons1_5.push(<View key={i} >
+                    <TouchableOpacity key={i} onPress={() => this._buttonpressed(i)} style={[this.state.buttonOffStyle, styles.buttonsTouchableStyle]}>
+                        <Text style={styles.buttonTextStyle}>{this.state.dataSource[i].name}</Text>
+                    </TouchableOpacity>
+                </View >);
+            }
+            return (
+                <View>
+                    <View style={styles.comingNextButtonsView}>
+                        <ScrollView horizontal='true'>
+                            {this.buttons1_5}
+                        </ScrollView>
+                    </View>
+                    <Movies navigation={this.props.navigation} category={this.state.category} />
+                </View>
+            );
+        }
     }
 }
 

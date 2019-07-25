@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
   backBtn: {
     left: 10,
     top: -16,
-    width: 22,
-    height: 22
+    width: wp('8%'),
+    height: hp('6%'),
   },
   title: {
     fontSize: 25,

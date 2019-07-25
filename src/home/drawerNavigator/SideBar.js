@@ -26,7 +26,7 @@ export default class SideBar extends Component {
   _forgot() {
     this.setState({
       text1: "Reset your password",
-      text2: "We will send you over email the instructions in order to get your password reseted",
+      text2: "We will send you over email the instructions in order to get your password reseted.",
       buttonText: 'Reset Password',
       textUnderButton: "Already have an account? ",
       textUnderButtonUnderline: "Log In",

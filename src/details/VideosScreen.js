@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button, StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
+import Icon from 'react-native-vector-icons/Ionicons';
 import YouTube from 'react-native-youtube';
 import images from '../utils/imagesHome';
 
@@ -11,7 +12,19 @@ export default class VideosScreen extends React.Component {
     videoId = movie.split("=");
     
     return (
-      <View style={{ flex: 1, backgroundColor: 'black' }}>
+        <View style={{ flex: 1, backgroundColor: 'black' }}>
+        <View style={{ 
+          height: 48,
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          backgroundColor: '#F5044C'
+        }}>
+          <TouchableOpacity style={{ marginLeft: 12, }}
+            onPress={() => { this.props.navigation.goBack() }}>
+            <Icon name="ios-arrow-back" color={'white'} size={45} />
+          </TouchableOpacity>
+        </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <YouTube
             videoId={videoId[1].toString()}
@@ -28,9 +41,6 @@ export default class VideosScreen extends React.Component {
             style={{ alignSelf: 'stretch', height: 300 }}
           />
         </View>
-        <TouchableOpacity style={styles.backBtn} onPress={() => { this.props.navigation.goBack() }}>
-          <Image style={styles.backImg} source={imagesDetails.icon_back} />
-        </TouchableOpacity>
         <View style={styles.logoStyle}>
           <Image source={images.moovie} style={styles.imageLogoStyle} />
         </View>

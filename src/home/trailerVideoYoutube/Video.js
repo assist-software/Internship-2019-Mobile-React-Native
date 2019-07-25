@@ -15,7 +15,7 @@ export default class VideosScreen extends React.Component {
     videoId = this.youtube_parser(this.props.navigation.getParam("youtube"))
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
-        <View style={{  //Here is DrawerNavigator 
+        <View style={{ 
           height: 48,
           flexDirection: 'row',
           justifyContent: 'flex-start',

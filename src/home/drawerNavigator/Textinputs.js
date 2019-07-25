@@ -184,7 +184,7 @@ export default class textinputs extends Component {
 
                     <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
                         onFocus={() => this._focus(1, this.state.valueEmail)}
-                        onBlur={() => this._blur(1, this.state.valuePass)}
+                        onBlur={() => this._blur(1, this.state.valueEmail)}
                         value={this.state.valueEmail}
                         onChangeText={(text) => this._changeText1(text)}
                     />

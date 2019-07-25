@@ -21,7 +21,8 @@ export default class HomeScreen extends Component {
   }
 
   showNavigation() {
-    setTimeout(() => this.props.navigation.openDrawer(), 1000)
+      this.props.navigation.goBack();
+      this.props.navigation.toggleDrawer({ side: 'left' });
   }
 
   render() {
@@ -37,7 +38,7 @@ export default class HomeScreen extends Component {
               backgroundColor: '#F5044C'
             }}>
               <TouchableOpacity style={{ marginLeft: 12, }}
-                onPress={() => this.props.navigation.openDrawer()}>
+                onPress={() => this.showNavigation()}>
                 <Icon name="ios-menu" color={'white'} size={50} />
               </TouchableOpacity>
             </View>

@@ -14,20 +14,10 @@ import ListMovies from './home/listMoviesSeeAll/ListMoviesSeeAll';
 import Sidebar from '../src/home//drawerNavigator/SideBar';
 
 
-const DrawerNavigatorHomeScreen = createDrawerNavigator(
-    {
-        HomeDrawer:
-            { screen: HomeScreen,
-             },
-    },
-    {
-        contentComponent: Sidebar,
-    }
-)
 const TabNavigator = createBottomTabNavigator({
     Home:
     {
-        screen: DrawerNavigatorHomeScreen,
+        screen: HomeScreen,
         navigationOptions:
         {
             tabBarLabel: 'Home',
@@ -68,9 +58,20 @@ const TabNavigator = createBottomTabNavigator({
         },
     }
 );
+const DrawerNavigatorHomeScreen = createDrawerNavigator(
+    {
+        HomeDrawer:
+            { screen: TabNavigator,
+            name: 'MainScreenStack'
+             },
+    },
+    {
+        contentComponent: Sidebar,
+    }
+)
 
 const homeStackNavigator = createStackNavigator({
-    HomePage: TabNavigator,
+    HomePage: DrawerNavigatorHomeScreen,
     Details: DetailsScreen,
     FullImage: FullImageScreen,
     navGenreExploreList: GenreExploreList,

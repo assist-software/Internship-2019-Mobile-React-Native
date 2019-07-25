@@ -16,15 +16,26 @@ export default class MoviesList1 extends Component {
 
     async componentDidMount() {
         let objectApi = await getDataFromAPI(moviesAPIUrl);
-        const currentUnixTime = await Math.floor(Date.now()/1000);
+        const currentUnixTime = await Math.floor(Date.now() / 1000);
         this.setState({
             isLoading: false,
             dataSource: objectApi.filter(mov => {
-                if (Math.floor(parseInt(mov.releaseDate)/1000) > currentUnixTime) return true;
+                if (Math.floor(parseInt(mov.releaseDate) / 1000) > currentUnixTime) return true;
             }),
         })
     }
 
+    compare(a, b) {
+        const releaseA = parseInt(a.releaseDate);
+        const releaseB = parseInt(b.releaseDate);
+        comparison = 0;
+        if (releaseA > releaseB) {
+            comparison = 1;
+        } else if (releaseA < releaseB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
 
     render() {
         if (this.state.isLoading) {
@@ -40,7 +51,7 @@ export default class MoviesList1 extends Component {
                 });
                 return (index >= 0);
             }
-            ).map((val, key) => {
+            ).sort(this.compare).map((val, key) => {
                 return (
                     <View key={key}>
                         <View key={key} style={styles.movieStyleView}>

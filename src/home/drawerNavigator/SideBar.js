@@ -111,6 +111,11 @@ export default class SideBar extends Component {
               </Text >
             </TouchableOpacity>
           </View>
+          <View>
+            <Text>
+              {"\n\n\n\n\n\n\n\n"}
+            </Text>
+          </View>
         </ImageBackground>
       </ScrollView>
     );
@@ -123,12 +128,12 @@ const styles = StyleSheet.create(
     {
       backgroundColor: 'black',
       width:'100%',
-      height:'100%',
+      height:'100%'
     },
     imageBackgroundStyle:
     {
       flex: 1,
-      resizeMode: 'stretch'
+      resizeMode: 'stretch',
     },
     logoStyleView:
     {

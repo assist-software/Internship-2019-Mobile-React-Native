@@ -14,25 +14,39 @@ export default class SeeAll extends React.Component {
       dataSource: null,
     }
   }
+compare(a,b)
+{
+	const releaseA=parseInt(a.releaseDate);
+	const releaseB=parseInt(b.releaseDate);
+	comparison=0;
+	if (releaseA>releaseB) {
+    comparison = 1;
+  } else if (releaseA<releaseB) {
+    comparison = -1;
+  }
+  return comparison;
+}
 
   async componentDidMount() {
     let objectApi = await getDataFromAPI(moviesAPIUrl);
-    const currentUnixTime = Math.floor(Date.now()/1000);
-    if (this.props.navigation.getParam('title') === "Coming Next")
+    const currentUnixTime = Math.floor(Date.now() / 1000);
+    if (this.props.navigation.getParam('title') === "Coming Next") {
       this.setState({
         isLoading: false,
         dataSource: objectApi.filter(mov => {
-          if (Math.floor(parseInt(mov.releaseDate)/1000) > currentUnixTime) return true;
-        }),
+          if (Math.floor(parseInt(mov.releaseDate) / 1000) > currentUnixTime) return true;
+        }).sort(this.compare),
       })
-      if (this.props.navigation.getParam('title') === "Recent Added")
+    }
+    if (this.props.navigation.getParam('title') === "Recent Added") {
       this.setState({
         isLoading: false,
         dataSource: objectApi.filter(mov => {
-          if (Math.floor(parseInt(mov.releaseDate)/1000) <= currentUnixTime) return true;
-        }),
+          if (Math.floor(parseInt(mov.releaseDate) / 1000) <= currentUnixTime) return true;
+        }).sort(this.compare).reverse(),
       })
-    
+    }
+
 
   }
 
@@ -56,12 +70,12 @@ export default class SeeAll extends React.Component {
             numColumns={2}
             renderItem={({ item }) =>
               <View style={styles.fList}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {movie : item })}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', { movie: item })}>
                   <Image style={styles.img} source={{ uri: item.coverUrl }}></Image>
                 </TouchableOpacity>
 
                 <Text style={styles.titluFilme}>{item.title}</Text>
-                <Text style={styles.dataFilme}>{moment.unix(Math.floor(parseInt(item.releaseDate)/1000)).format("DD/MM/YYYY")}</Text>
+                <Text style={styles.dataFilme}>{moment.unix(Math.floor(parseInt(item.releaseDate) / 1000)).format("DD/MM/YYYY")}</Text>
               </View>
             } keyExtractor={(item, index) => index.toString()}
           />

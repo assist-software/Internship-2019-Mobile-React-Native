@@ -94,7 +94,7 @@ export default class SideBar extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.buttonViewStyle}>
-            <TouchableOpacity style={styles.buttonTouchableStyle}>
+            <TouchableOpacity style={styles.buttonTouchableStyle} onPress={()=>this.props.navigation.navigate("MyProfile")}>
               <Text style={styles.buttonTextStyle}>
                 {this.state.buttonText}
               </Text>

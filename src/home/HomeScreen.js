@@ -6,8 +6,6 @@ import ComingNextButtons from '../home/comingNextButtons/ComingNextButtons';
 import Rectangle from './rectangle/Rectangle';
 import RecentAddedButtons from '../home/recentAddedButtons/RecentAddedButtons';
 import { Dimensions } from 'react-native'
-import { DrawerActions } from 'react-native'
-import {NavigationActions} from 'react-navigation'
 export default class HomeScreen extends Component {
 
   constructor(props) {

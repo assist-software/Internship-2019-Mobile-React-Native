@@ -158,7 +158,7 @@ export default class textinputs extends Component {
                             onChangeText={(text) => this._changeText3(text)}
                         />
                     </View>
-                    <View style={styles.firstInputStyleView}>
+                    <View style={styles.secondInputStyleView}>
 
                         <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
                             onFocus={() => this._focus(1, this.state.valueEmail)}
@@ -178,7 +178,7 @@ export default class textinputs extends Component {
                     </View>
                 </View>
             )
-        else if ((this.props.text1 === "Reset your password") && (this.props.text2 === "We will send you over email the instructions in order to get your password reseted"))
+        else if ((this.props.text1 === "Reset your password") && (this.props.text2 === "We will send you over email the instructions in order to get your password reseted."))
             return (
                 <View style={styles.firstInputStyleView}>
 

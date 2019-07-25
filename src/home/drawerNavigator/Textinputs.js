@@ -181,13 +181,14 @@ export default class textinputs extends Component {
         else if ((this.props.text1 === "Reset your password") && (this.props.text2 === "We will send you over email the instructions in order to get your password reseted."))
             return (
                 <View style={styles.firstInputStyleView}>
-
+                    <Text>{"\n\n"}</Text>
                     <TextInput style={[styles.TextInputStyle, { borderColor: this.state.textInput1BorderColor }]}
                         onFocus={() => this._focus(1, this.state.valueEmail)}
                         onBlur={() => this._blur(1, this.state.valueEmail)}
                         value={this.state.valueEmail}
                         onChangeText={(text) => this._changeText1(text)}
                     />
+                    <Text>{"\n\n"}</Text>
                 </View>
             )
     }
